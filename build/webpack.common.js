@@ -18,7 +18,7 @@ module.exports = {
             index: './src/js/home.js',
             main: './src/js/main.js',
             cssmain: './src/css/main.scss',
-            mangoJam: './jsbscs-logs-common/js/mangoMessenger.js'
+            mangoJam: './common/js/mangoMessenger.js'
         };
         const _suffix = ['.js'];
         _extraName.forEach((_name) => {

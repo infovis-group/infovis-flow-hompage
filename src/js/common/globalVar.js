@@ -1,8 +1,8 @@
 import { confignize, getUrlParamsFromUrl, loadConf, ajaxCall } from './common';
 import _ from 'lodash';
 
-export const confPath = '../../jsbscs-logs-common/conf/';
-export const mockPath = `../../jsbscs-logs-common/mockData/`;
+export const confPath = '../../common/conf/';
+export const mockPath = `../../common/mockData/`;
 export const urlPath =
     process.env.NODE_ENV === 'development' ? `http://192.168.201.201:18091` : 'logsApi'; //后台包位置
 export const authPath =

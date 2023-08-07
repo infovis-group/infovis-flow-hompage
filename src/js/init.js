@@ -8,8 +8,8 @@ export function buildBaseHtml() {
     <div class="main-container">
         <div id="header">
             <div class="left">
-                <div class="img"><img src="../../jsbscs-logs-common/image/title.png" /></div>
-                <div class="title">监控日志</div>
+                <div class="img"><img src="../../common/image/title.png" /></div>
+                <div class="title">项目名</div>
             </div>
             <div class="user-info">
                 

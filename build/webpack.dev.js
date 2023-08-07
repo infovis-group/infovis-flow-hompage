@@ -16,8 +16,8 @@ module.exports = merge(commonConfig, {
         hot: true, // 开启热更新
         historyApiFallback: true, // 解决history路由404问题
         static: {
-            directory: path.join(__dirname, '../jsbscs-logs-common'), //托管静态资源public文件夹
-            publicPath: '/jsbscs-logs-common'
+            directory: path.join(__dirname, '../common'), //托管静态资源public文件夹
+            publicPath: '/common'
         }
     },
     plugins: [
