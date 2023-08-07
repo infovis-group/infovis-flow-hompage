@@ -30,7 +30,7 @@ module.exports = merge(commonConfig, {
     },
     output: {
         filename: 'js/[name]_[chunkhash:8].js',
-        path: path.resolve(__dirname, '../build')
+        path: path.resolve(__dirname, '../dist')
     },
     module: {
         rules: [

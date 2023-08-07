@@ -1,10 +1,10 @@
 {
-  "name": "infovis-logs-homepage",
+  "name": "infovis-flow-homepage",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf infovis-logs/*",
+    "clean": "rimraf dist/*",
     "dev": "cross-env NODE_ENV=development BASE_ENV=development webpack-dev-server -c build/webpack.dev.js",
     "dev:test": "cross-env NODE_ENV=development BASE_ENV=test webpack-dev-server -c build/webpack.dev.js --progress",
     "build": "npm run clean &&  cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.prod.js"
