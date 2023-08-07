@@ -1,0 +1,18 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "dispatchContent": "加强巡视"
+        },
+        {
+            "dispatchContent": "与站端核对后汇报"
+        },
+        {
+            "dispatchContent": "了解现场情况后汇报"
+        },
+        {
+            "dispatchContent": "做好遥控操作准备"
+        }
+    ]
+}

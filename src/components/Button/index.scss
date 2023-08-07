@@ -1,0 +1,35 @@
+@import '../../css/theme.scss';
+.myButton {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid;
+    @include set-border-color('default-border-color');
+    @include set-bg-color('default-bg-color');
+    border-radius: 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    &:hover {
+        @include btnHover();
+    }
+    .iconfont {
+        margin-right: 0.5rem;
+    }
+}
+
+.delete {
+    @include set-bg-color('delete-btn-bg-color');
+    @include set-font-color('table-thead-color');
+    border: 0 !important;
+    &:hover {
+        @include set-bg-color('delete-btn-bg-color');
+        @include set-font-color('table-thead-color');
+    }
+}
+.edit {
+    @include set-bg-color('edit-btn-bg-color');
+    @include set-font-color('table-thead-color');
+    border: 0 !important;
+    &:hover {
+        @include set-bg-color('edit-btn-bg-color');
+        @include set-font-color('table-thead-color');
+    }
+}

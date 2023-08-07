@@ -1,0 +1,267 @@
+@import './theme.scss';
+$header-height: 3.5rem;
+
+body {
+    overflow: hidden;
+    --sidbar-width: 15rem;
+    --sidbar-animation: 700ms;
+
+    .main-container {
+        display: grid;
+        grid-template-rows: $header-height auto;
+        grid-template-columns: var(--sidbar-width) auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: grid-template-columns var(--sidbar-animation);
+    }
+}
+
+// 标题栏信息
+#header {
+    grid-area: 1 / 1 / span 1 / span 2;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    user-select: none;
+    z-index: 2;
+    @include set-header-bg();
+
+    @include themeify {
+        box-shadow: 0px 0.1rem 0.4rem themed('box-shadow-dark-3');
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+
+        .img {
+            width: var(--sidbar-width);
+            height: 100%;
+            position: relative;
+            @include set-bg('logo-bg-color');
+            img {
+                width: 8rem;
+                height: 2rem;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-color: transparent;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .title {
+            margin-left: 2rem;
+            font-size: 2rem;
+            @include set-font-color('title-font-color');
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+    }
+
+}
+
+// 侧边栏
+#sidebar {
+    --item-height: 2.5rem;
+    padding: 0 1px;
+    z-index: 1;
+    overflow: auto;
+
+    // box-shadow: 0px 0.2rem 0.8rem hsla(0, 0%, 15%, 0.5);
+    .group-wrap {
+        padding: 0.5rem 0px;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            height: 1px;
+            left: 5px;
+            right: 5px;
+            bottom: 0;
+            @include set-bg-color('nav-border');
+        }
+
+        .group-title {
+            height: 2rem;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 0.5rem;
+            font-size: 0.9em;
+            @include set-font-color('default-font-gray-color');
+        }
+
+        .group-item {
+            padding-left: 1rem;
+        }
+    }
+
+    .item-cntr {
+        height: var(--item-height);
+        display: inline-flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        transition: font-weight 500ms, color 500ms;
+
+        .iconfont {
+            font-size: 1.2rem;
+        }
+
+        .item-cntr-text {
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-left: 0.5rem;
+            text-overflow: ellipsis;
+        }
+
+        .expand {
+            position: absolute;
+            right: 0.5rem;
+            font-weight: bolder;
+            @include set-font-color('gray-border-color');
+            transition: transform 500ms;
+        }
+
+        &:hover {
+            @include set-bg-color('default-hover-bg-color');
+        }
+
+        &.select {
+            @include set-font-color('title-font-color');
+            @include set-bg-color('default-hover-bg-color');
+            font-weight: bold;
+
+            &::before {
+                content: '';
+                bottom: 0;
+                top: 0;
+                left: -1rem;
+                position: absolute;
+                right: 0;
+                z-index: -1;
+
+                @include themeify {
+                    background: linear-gradient(90deg,
+                            themed('title-font-color') 5px,
+                            themed('tab-select-color') 5px,
+                            transparent);
+                }
+            }
+        }
+    }
+
+    .children-wrap {
+        --item-height: 2.1rem;
+        height: 0px;
+        transition: height 500ms;
+        overflow: hidden;
+        --children-count: 0;
+        margin-left: 1rem;
+        padding-left: 1rem;
+        position: relative;
+
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            bottom: 0;
+            left: 0;
+            border-left: 1px dashed;
+            @include set-border-color('nav-border');
+        }
+    }
+
+    .item-haschildren-wrap.open {
+        .expand {
+            transform: rotate(90deg);
+            display: inline-block;
+        }
+
+        .children-wrap {
+            height: calc(var(--item-height) * var(--children-count));
+        }
+    }
+}
+
+#body-curtain {
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+    position: absolute;
+    // background-color: hsla(210, 50%, 20%, 0.8);
+    @include set-bg-color('default-font-gray-color');
+    opacity: 0.9;
+}
+
+.jamui-card {
+    .butt-container span {
+        cursor: pointer;
+
+        i {
+            font-size: 1rem;
+
+            &::after {
+                display: none;
+            }
+        }
+    }
+
+    &.movable {
+        @include card-radius('card');
+
+        .card-title {
+            @include themeify {
+                background: linear-gradient(45deg, themed('deep-base-bg-color'), transparent);
+            }
+
+            width: 100%;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            padding-left: 1.2rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+
+            &:after {
+                display: none;
+            }
+        }
+
+        .card-body {
+            top: 2rem;
+        }
+    }
+}
+
+.jam-layoutable-canvas {
+    .jamui-card {
+        z-index: 0;
+
+        &::before,
+        .card-title {
+            display: none;
+        }
+
+        .card-body {
+            height: 100%;
+            top: 0;
+        }
+
+        .butt-container {
+            display: none;
+        }
+
+        &::after {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+$default-theme: (
+    // 字体颜色
+    default-font-color: hsl(0, 0%, 90%),
+    default-hover-color: hsl(0, 0%, 10%),
+    default-hover-bg-color: hsl(0, 0%, 90%),
+    font-color-1: hsl(0, 0%, 85%),
+    font-color-2: hsl(0, 0%, 75%),
+    font-color-3: hsla(0, 0%, 17%, 0.9),
+    // 反向颜色 标题颜色
+    base-reverse-color: hsl(0, 0%, 97%),
+    base-reverse-opacity: hsla(0, 0%, 97%, 0.02),
+    base-reverse-opacity-0: hsla(0, 0%, 97%, 0.05),
+    base-reverse-opacity-1: hsla(0, 0%, 97%, 0.1),
+    base-reverse-opacity-15: hsla(0, 0%, 97%, 0.2),
+    base-reverse-opacity-2: hsla(0, 0%, 97%, 0.3),
+    base-reverse-opacity-3: hsla(0, 0%, 97%, 0.5),
+    base-reverse-opacity-4: hsla(0, 0%, 97%, 0.6),
+    // 背景颜色
+    base-bg-color: linear-gradient(0deg, #121212, #1c1e22),
+    // 音乐颜色
+    box-shadow-dark-1: hsl(0, 0%, 0%, 0.9),
+    box-shadow-dark-2: hsl(0, 0%, 0%, 0.7),
+    box-shadow-dark-3: hsl(0, 0%, 0%, 0.5),
+    // 基础色
+    base-hue-color: hsl(var(--base-h), 69%, 40%),
+    // 高亮色
+    light-base-hue-color: hsl(var(--base-h), 78%, 55%),
+    light-font-color: hsl(44, 63%, 70%)
+);

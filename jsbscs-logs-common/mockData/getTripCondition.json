@@ -1,0 +1,25 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": {
+        "fuhe": {
+            "num1":3,
+            "maxVal1": 19,
+            "num2": 1,
+            "maxVal2": 19
+        },
+        "progressNum": [{
+                "name": "危急",
+                "value": 1
+            },
+            {
+                "name": "严重",
+                "value": 7
+            },
+            {
+                "name": "一般",
+                "value": 11
+            }
+        ]
+    }
+}

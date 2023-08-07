@@ -1,0 +1,474 @@
+{
+    "code": 1,
+    "msg": "查询成功",
+    "data": {
+        "pageSize": 2147483647,
+        "pageIndex": 1,
+        "pageCount": 1,
+        "pojoTotalCount": 21,
+        "list": [
+            {
+                "stId": "113997365567815683",
+                "parentId": 33,
+                "stName": "山东.聊城站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-30 14:47:37",
+                "endTime": "2023-06-30 14:44:49",
+                "status": "1",
+                "remark": null,
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 33,
+                        "parentId": 33,
+                        "bay": "721电容器1间隔 1",
+                        "bayId": "114278840544526384",
+                        "type": "一次异常方式",
+                        "range": "开关及线路",
+                        "changeMode": "由运行转检修",
+                        "desc": "721电容器1间隔 1开关及线路由运行转检修",
+                        "recordDefineId": "1",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815683",
+                "parentId": 34,
+                "stName": "山东.聊城站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-30 14:23:38",
+                "endTime": "2023-06-30 14:25:38",
+                "status": "1",
+                "remark": null,
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 34,
+                        "parentId": 34,
+                        "bay": "721电容器1间隔 1",
+                        "bayId": "114278840544526384",
+                        "type": "一次异常方式",
+                        "range": "开关及线路",
+                        "changeMode": "由运行转检修",
+                        "desc": "721电容器1间隔 1开关及线路由运行转检修",
+                        "recordDefineId": "1",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815683",
+                "parentId": 29,
+                "stName": "山东.聊城站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-30 14:04:37",
+                "endTime": "2023-06-30 14:37:21",
+                "status": "1",
+                "remark": "1234567890-",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 32,
+                        "parentId": 29,
+                        "bay": "721电容器1间隔 1",
+                        "bayId": "114278840544526384",
+                        "type": "一次异常方式",
+                        "range": "开关及线路",
+                        "changeMode": "由运行转检修",
+                        "desc": "721电容器1间隔 1开关及线路由运行转检修",
+                        "recordDefineId": "1",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 28,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-01 14:09:17",
+                "endTime": null,
+                "status": "0",
+                "remark": "sss",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 28,
+                        "parentId": 28,
+                        "bay": "1号主变",
+                        "bayId": "114278840544526455",
+                        "type": "设备新投",
+                        "range": "电抗器",
+                        "changeMode": "新投",
+                        "desc": "1号主变电抗器新投",
+                        "recordDefineId": "106",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 23,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-08 13:59:44",
+                "endTime": null,
+                "status": "0",
+                "remark": "lll",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 23,
+                        "parentId": 23,
+                        "bay": "10kV电容器1",
+                        "bayId": "114278840544526442",
+                        "type": "二次异常方式",
+                        "range": "差动保护",
+                        "changeMode": "停用",
+                        "desc": "停用10kV电容器1差动保护",
+                        "recordDefineId": "80",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 27,
+                        "parentId": 23,
+                        "bay": "1号主变",
+                        "bayId": "114278840544526455",
+                        "type": "设备新投",
+                        "range": "电抗器",
+                        "changeMode": "新投",
+                        "desc": "1号主变电抗器新投",
+                        "recordDefineId": "106",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 26,
+                        "parentId": 23,
+                        "bay": "110kV线路1",
+                        "bayId": "114278840544526454",
+                        "type": "设备退运",
+                        "range": "电容器",
+                        "changeMode": "退运",
+                        "desc": "110kV线路1电容器退运",
+                        "recordDefineId": "93",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 24,
+                        "parentId": 23,
+                        "bay": "10kV线路2",
+                        "bayId": "114278840544526448",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "由热备用转运行",
+                        "desc": "10kV线路2开关由热备用转运行",
+                        "recordDefineId": "99",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815683",
+                "parentId": 22,
+                "stName": "山东.聊城站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-13 13:34:54",
+                "endTime": null,
+                "status": "0",
+                "remark": "00000",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 22,
+                        "parentId": 22,
+                        "bay": "10kV母线2间隔",
+                        "bayId": "114278840544526388",
+                        "type": "设备退运",
+                        "range": "电容器",
+                        "changeMode": "退运",
+                        "desc": "10kV母线2间隔电容器退运",
+                        "recordDefineId": "93",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 20,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-21 13:03:54",
+                "endTime": null,
+                "status": "0",
+                "remark": "000",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 20,
+                        "parentId": 20,
+                        "bay": "10kV2号主变断路器",
+                        "bayId": "114278840544526441",
+                        "type": "二次异常方式",
+                        "range": "自投保护",
+                        "changeMode": "跳闸改信号",
+                        "desc": "10kV2号主变断路器自投保护跳闸改信号",
+                        "recordDefineId": "70",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 21,
+                        "parentId": 20,
+                        "bay": "110kV母线2间隔",
+                        "bayId": "114278840544526924",
+                        "type": "设备新投",
+                        "range": "开关及线路",
+                        "changeMode": "新投",
+                        "desc": "110kV母线2间隔开关及线路新投",
+                        "recordDefineId": "102",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815686",
+                "parentId": 19,
+                "stName": "山东.鲁中站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-19 13:32:53",
+                "endTime": null,
+                "status": "0",
+                "remark": "9999",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 19,
+                        "parentId": 19,
+                        "bay": "站用变2",
+                        "bayId": "114278840544526435",
+                        "type": "二次异常方式",
+                        "range": "差动保护",
+                        "changeMode": "跳闸改信号",
+                        "desc": "站用变2差动保护跳闸改信号",
+                        "recordDefineId": "62",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 17,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-21 13:56:52",
+                "endTime": "2023-06-23 13:59:52",
+                "status": "1",
+                "remark": "5555",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 17,
+                        "parentId": 17,
+                        "bay": "10kV电容器1",
+                        "bayId": "114278840544526442",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "由热备用转运行",
+                        "desc": "10kV电容器1开关由热备用转运行",
+                        "recordDefineId": "99",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 18,
+                        "parentId": 17,
+                        "bay": "10kV电容器1",
+                        "bayId": "114278840544526442",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "由运行转热备用",
+                        "desc": "10kV电容器1开关由运行转热备用",
+                        "recordDefineId": "98",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 16,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-01 13:35:52",
+                "endTime": null,
+                "status": "0",
+                "remark": "555",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 16,
+                        "parentId": 16,
+                        "bay": "110kV1号主变断路器",
+                        "bayId": "114278840544526449",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "拉开",
+                        "desc": "拉开110kV1号主变断路器开关",
+                        "recordDefineId": "97",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815687",
+                "parentId": 15,
+                "stName": "山东.淄川站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-05-31 13:58:51",
+                "endTime": "2023-06-01 13:00:52",
+                "status": "1",
+                "remark": "sss",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 15,
+                        "parentId": 15,
+                        "bay": "10kV分段",
+                        "bayId": "114278840544526444",
+                        "type": "二次异常方式",
+                        "range": "差动保护",
+                        "changeMode": "停用",
+                        "desc": "停用10kV分段差动保护",
+                        "recordDefineId": "80",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815686",
+                "parentId": 1,
+                "stName": "山东.鲁中站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-01 15:37:13",
+                "endTime": "2023-06-22 15:39:13",
+                "status": "1",
+                "remark": "ceshi",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 9,
+                        "parentId": 1,
+                        "bay": "10kV电容器2",
+                        "bayId": "114278840544526413",
+                        "type": "一次异常方式",
+                        "range": "线路",
+                        "changeMode": "由运行转冷备用",
+                        "desc": "10kV电容器2线路由运行转冷备用",
+                        "recordDefineId": "12",
+                        "generateFormat": "1"
+                    },
+                    {
+                        "id": 14,
+                        "parentId": 1,
+                        "bay": "110kV母联",
+                        "bayId": "114278840544526419",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "拉开",
+                        "desc": "拉开110kV母联开关",
+                        "recordDefineId": "97",
+                        "generateFormat": null
+                    },
+                    {
+                        "id": 11,
+                        "parentId": 1,
+                        "bay": "10kV电容器2",
+                        "bayId": "114278840544526413",
+                        "type": "长期方式调整",
+                        "range": "开关",
+                        "changeMode": "合上",
+                        "desc": "合上10kV电容器2开关",
+                        "recordDefineId": "96",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815683",
+                "parentId": 13,
+                "stName": "山东.聊城站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-03 15:23:53",
+                "endTime": "2023-06-22 15:25:53",
+                "status": "1",
+                "remark": null,
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 13,
+                        "parentId": 13,
+                        "bay": "711线路1间隔",
+                        "bayId": "114278840544526389",
+                        "type": "设备新投",
+                        "range": "开关及线路",
+                        "changeMode": "新投",
+                        "desc": "711线路1间隔开关及线路新投",
+                        "recordDefineId": "102",
+                        "generateFormat": null
+                    }
+                ]
+            },
+            {
+                "stId": "113997365567815686",
+                "parentId": 12,
+                "stName": "山东.鲁中站",
+                "regionId": null,
+                "region": null,
+                "startTime": "2023-06-15 15:13:52",
+                "endTime": null,
+                "status": "0",
+                "remark": "ll",
+                "startUser": null,
+                "endUser": null,
+                "recordContentList": [
+                    {
+                        "id": 12,
+                        "parentId": 12,
+                        "bay": "10kV母线1",
+                        "bayId": "114278840544526415",
+                        "type": "设备退运",
+                        "range": "开关及线路",
+                        "changeMode": "退运",
+                        "desc": "10kV母线1开关及线路退运",
+                        "recordDefineId": "90",
+                        "generateFormat": null
+                    }
+                ]
+            }
+        ]
+    }
+}

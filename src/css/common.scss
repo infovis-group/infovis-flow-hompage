@@ -1,0 +1,564 @@
+@import './theme.scss';
+.clock-wrapper {
+    position: fixed;
+    left: 4vh;
+    top: 10vh;
+    --zoom: 1;
+    font-size: calc(12vh * var(--zoom));
+    display: flex;
+    overflow: visible;
+    justify-content: center;
+    align-items: center;
+    z-index: 10086;
+    --ts-factor: 1;
+    --bg-h: 199;
+    --bg-s: 10%;
+    --bg-l: 98%;
+    --cmpt-h: 201;
+    --cmpt-s: 45%;
+    --cmpt-l: 55%;
+    --text-h: 0;
+    --text-l: 30%;
+    --card-bg: hsl(var(--bg-h), var(--bg-s), var(--bg-l));
+    --card-shadow: 0rem 0.5rem 1.2rem -0.2rem hsla(0, 0%, 0%, 0.2);
+    --card-top-bg: hsl(var(--bg-h), calc(var(--bg-s) - 10%), calc(var(--bg-l) + 2%));
+    --card-hover-bg: hsl(var(--bg-h), var(--bg-s), var(--bg-l));
+    --card-hover-shadow: 0 1rem 2.4rem -0.5rem hsla(0, 0%, 0%, 0.35);
+    --card-title-arrow-bg: hsl(var(--cmpt-h), 40%, 44%);
+    --card-mini-bg: hsla(var(--bg-h), calc(var(--bg-s) + 0%), calc(var(--bg-l) + 4%), 0.98);
+    --card-mini-shadow: 0rem 0.5rem 1rem -0.1rem hsla(0, 0%, 0%, 0.25);
+    --card-mini-title-bg: hsl(var(--cmpt-h), 65%, 38%);
+}
+
+.clock {
+    --mark-color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.5), calc(var(--cmpt-l) * 1.6));
+    --mark-color-1: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.5), calc(var(--cmpt-l) * 1));
+    --hand-color-m: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.75), calc(var(--cmpt-l) * 1));
+    --hand-color-h: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.75), calc(var(--cmpt-l) * 0.75));
+    --hand-color-s: rgb(255, 102, 0);
+    --label-color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.5), calc(var(--cmpt-l) * 1));
+    --bg-color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.9), calc(var(--cmpt-l) * 1));
+    --face-color: lightgray;
+    border-radius: 0.15em;
+    box-shadow: 0em 0.08em 0.15em -0.04em hsla(0, 0%, 0%, 0.5);
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.15) 0%, hsla(0, 0%, 0%, 0.25) 100%);
+    background-color: var(--bg-color);
+    height: 0.55em;
+    width: 1em;
+    transition: all calc(200ms * var(--ts-factor));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    --face-size: 90%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.clock.analog {
+    height: 0.985em;
+    width: 1em;
+}
+
+.clock::before {
+    position: absolute;
+    display: flex;
+    box-shadow: inset 0em 0.1em 0.15em hsla(0, 0%, 0%, 0.3), inset 0em -0.1em 0.15em white;
+    background-image: radial-gradient(hsla(0, 0%, 0%, 0.12) 0%, transparent 40%, white 50%);
+    background-color: var(--card-bg);
+    background-size: 250% 200%;
+    background-position: 50% 0%;
+    border-radius: 0.55em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all calc(200ms * var(--ts-factor));
+    content: attr(data-time);
+    font-size: 0.22em;
+    box-sizing: border-box;
+    border: 0.05em solid var(--bg-color);
+}
+
+.clock.analog .clock-face {
+    border-radius: 50%;
+    display: flex;
+    height: var(--face-size);
+    width: var(--face-size);
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.clock.analog::before {
+    position: absolute;
+    color: transparent;
+    height: var(--face-size);
+    width: var(--face-size);
+    border-radius: 50%;
+}
+
+.clock.analog.square::before {
+    border-radius: 0.5em;
+}
+
+.clock:not(.analog)::before {
+    font-family: 'DINPro';
+    top: 0.2em;
+    left: 0.2em;
+    height: 1.5em;
+    width: calc(100% - 0.4em);
+    color: var(--label-color);
+    z-index: 1;
+    white-space: nowrap;
+    flex: 0 0 auto;
+    text-shadow: 0.03em 0.1em 0.08em hsla(0, 0%, 0%, 0.08);
+}
+
+.clock::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    line-height: 1em;
+    z-index: 1;
+    font-family: 'DINPro';
+    border-radius: 0.25em;
+    font-size: 0.13em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.clock:not(.analog) .clock-face {
+    display: none;
+}
+
+.clock:not(.analog)::after {
+    content: attr(data-year) '年 ' attr(data-month) '月 ' attr(data-date) '日';
+    transform: scale(0.77);
+    width: 100%;
+    top: 3em;
+    height: 1em;
+    color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.6), 75%);
+}
+
+.clock.analog::after {
+    content: attr(data-date);
+    top: 58%;
+    color: white;
+    background: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.2), calc(var(--cmpt-l) * 1.6));
+    height: 1em;
+    width: 1.5em;
+    font-size: 0.11em;
+    text-align: center;
+    box-shadow: inset 0.01em 0.2em 0.25em hsla(0, 0%, 0%, 0.2);
+}
+
+.clock .clock-face .hands {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0em 0.027em 0.015em hsla(0, 0%, 0%, 0.4));
+    pointer-events: none;
+}
+
+.clock .clock-face .hands::before {
+    z-index: 3;
+    content: '';
+    position: absolute;
+    height: 0.04em;
+    width: 0.04em;
+    border-radius: 50%;
+    border: 0.02em solid var(--hand-color-s);
+    background-color: var(--hand-color-h);
+    box-shadow: inset 0em 0.01em 0.01em hsla(0, 0%, 0%, 0.45);
+}
+
+.clock .clock-face .marks {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0em 0.02em 0.01em hsla(0, 0%, 0%, 0.25));
+    pointer-events: none;
+}
+
+.clock .clock-face .marks::before,
+.clock .clock-face .marks::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    --color: var(--mark-color);
+    --mark-len: 0.03em;
+    --mark-width: 0.015em;
+    --begin: calc(0% - var(--mark-width));
+    --end: calc(50% - var(--mark-width) / 2);
+    --mask: radial-gradient(transparent calc(var(--range) - var(--mark-len)), black calc(var(--range) - var(--mark-len)), black var(--range), transparent var(--range));
+    -webkit-mask-image: var(--mask);
+    mask-image: var(--mask);
+}
+
+.clock.square .clock-face .marks::before,
+.clock.square .clock-face .marks::after {
+    --padding: 0.03em;
+    --len: 0.03em;
+    height: calc(100% - var(--padding) * 2);
+    width: calc(100% - var(--padding) * 2);
+    -webkit-mask-image: none;
+    mask-image: none;
+    --bias: 0.05em;
+    /* prettier-ignore */
+    clip-path: polygon(
+        0% 0%,
+        calc(var(--len) + var(--bias)) 0%,
+        calc(var(--len) + var(--bias)) var(--len),
+        var(--len) calc(var(--len) + var(--bias)),
+        var(--len) calc(100% - var(--len) - var(--bias)),
+        calc(var(--len) + var(--bias)) calc(100% - var(--len)),
+        calc(100% - var(--len) - var(--bias)) calc(100% - var(--len)),
+        calc(100% - var(--len)) calc(100% - var(--len) - var(--bias)),
+        calc(100% - var(--len)) calc(var(--len) + var(--bias)),
+        calc(100% - var(--len) - var(--bias)) var(--len),
+        calc(var(--len) + var(--bias)) var(--len),
+        calc(var(--len) + var(--bias)) 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%
+    );
+    /* background-color: red; */
+    border-radius: 0.09em;
+}
+
+.clock.square .clock-face .marks::before {
+    --padding: 0.028em;
+    --len: 0.05em;
+}
+
+.clock.labelall .clock-face .marks::before {
+    --mark-len: 0.03em;
+    --mark-width: 0.02em;
+    --len: 0.04em;
+}
+
+.clock .clock-face .marks::before {
+    z-index: 1;
+    --color: var(--mark-color-1);
+    --mark-len: 0.055em;
+    --mark-width: 0.024em;
+    --range: 66.5%;
+    /* prettier-ignore */
+    background-image: 
+        repeating-linear-gradient(0deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(30deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)),
+        repeating-linear-gradient(60deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(90deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(120deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(150deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end));
+}
+
+.clock .clock-face .marks::after {
+    --color: var(--mark-color);
+    --mark-width: 0.015em;
+    --range: 66%;
+    /* prettier-ignore */
+    background-image: 
+        repeating-linear-gradient(0deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(6deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(12deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(18deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(24deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(30deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)),
+        repeating-linear-gradient(36deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(42deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(48deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(54deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(60deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(66deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)),
+        repeating-linear-gradient(72deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(78deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(84deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(90deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(96deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(102deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)),
+        repeating-linear-gradient(108deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(114deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(120deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(126deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(132deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(138deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)),
+        repeating-linear-gradient(144deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(150deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(156deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(162deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(168deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end)), 
+        repeating-linear-gradient(174deg, var(--color) var(--begin), var(--color) 0%, transparent 0%, transparent var(--end));
+}
+
+.clock .clock-face .labels {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.clock .clock-face .labels [class^='label-'] {
+    position: absolute;
+    font-family: DINPro;
+    font-weight: bold;
+    font-size: 0.15em;
+    line-height: 1em;
+    height: 82%;
+    /* width: 1px;
+    background-color: red; */
+    color: var(--label-color);
+    transform: rotate(var(--deg));
+    display: flex;
+    justify-content: center;
+    transition: all calc(400ms * var(--ts-factor));
+    --scale: 1;
+}
+
+.clock .clock-face .labels [class^='label-']::before,
+.clock .clock-face .labels [class^='label-']::after {
+    position: absolute;
+    transform: rotate(calc(0deg - var(--deg))) scale(var(--scale));
+    margin: 0;
+    padding: 0;
+    transition: all calc(400ms * var(--ts-factor));
+}
+
+.clock .clock-face .labels [class^='label-']::before {
+    content: attr(data-b);
+    align-self: flex-start;
+}
+
+.clock .clock-face .labels [class^='label-']::after {
+    content: attr(data-a);
+    align-self: flex-end;
+}
+
+.clock .clock-face .labels [class^='label-'].p {
+}
+
+.clock .clock-face .labels [class^='label-'].s {
+    --scale: 0.33;
+    height: 135%;
+}
+
+.clock.square.labelall .clock-face .labels [class^='label-'].s {
+    height: 99%;
+}
+
+.clock.labelall .clock-face .labels [class^='label-'].p,
+.clock.labelall .clock-face .labels [class^='label-'].s {
+    --scale: 0.78;
+    height: 88%;
+}
+
+.clock.square:hover .clock-face .labels [class^='label-'].s {
+    opacity: 0.15;
+}
+
+.clock .hand {
+    height: 0.05em;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock .hand.hour,
+.clock .hand.min {
+    --stroke-color: white;
+}
+
+.clock .hand.hour {
+    --width: 20%;
+    --hand-color: var(--hand-color-h);
+    transform: rotate(var(--hr-deg));
+    z-index: 1;
+}
+
+.clock .hand.min {
+    --width: 20%;
+    --hand-color: var(--hand-color-m);
+    transform: rotate(var(--min-deg));
+    z-index: 0;
+}
+
+.clock .hand.second {
+    --width: 55.5%;
+    --hand-color: var(--hand-color-s);
+    transform: rotate(var(--sec-deg));
+    z-index: 2;
+    transition: transform 100ms cubic-bezier(0.36, 0.39, 0.21, 2.41);
+}
+
+.clock.continuous .hand.second {
+    transition: transform 1s linear;
+}
+
+.clock .hand.hour::before,
+.clock .hand.min::before {
+    content: '';
+    position: absolute;
+    height: 90%;
+    width: 30%;
+    background: var(--hand-color);
+    border-radius: 0.1em;
+    right: calc(40% + var(--width));
+    border: 0.005em solid var(--stroke-color);
+    z-index: 1;
+}
+
+.clock .hand.hour::before {
+    width: 20%;
+    right: calc(40% + var(--width));
+}
+
+.clock .hand.hour::after,
+.clock .hand.min::after,
+.clock .hand.second::after {
+    content: '';
+    position: absolute;
+    background-color: var(--hand-color);
+    border-radius: 0.1em;
+    right: 42%;
+    width: var(--width);
+    height: 0.02em;
+}
+
+.clock .clock-face .buttons {
+    position: absolute;
+    height: 111%;
+    width: 111%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+        'b1 b2'
+        'b3 b4';
+    grid-gap: 40%;
+}
+
+.clock .clock-face button {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    --pos: 0em;
+    cursor: pointer;
+    border: none;
+    color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.6), 78%);
+    font-size: inherit;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background: none;
+    outline: none;
+    border: none;
+    display: none;
+}
+
+.clock .clock-face button:hover {
+    filter: drop-shadow(0 0 0.02em currentColor) brightness(1.2) saturate(1.2);
+}
+
+.clock .clock-face button:active {
+    filter: brightness(0.95);
+}
+
+.clock:hover .clock-face button {
+    display: flex;
+}
+
+.clock .clock-face button::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    transition: all calc(400ms * var(--ts-factor));
+}
+
+.clock.clock.square .clock-face button::after {
+    --pos: 0.1em;
+    color: hsl(var(--cmpt-h), calc(var(--cmpt-s) * 0.6), 50%);
+}
+
+.clock .clock-face .anabutt {
+    grid-area: b1;
+}
+
+.clock .clock-face .anabutt::after {
+    content: 'DG';
+    font-weight: bold;
+    left: var(--pos);
+    top: var(--pos);
+    transform-origin: top left;
+    transform: scale(0.1) translate(0.5em, 0.5em);
+}
+
+.clock .clock-face .labelbutt {
+    grid-area: b2;
+}
+
+.clock .clock-face .labelbutt::after {
+    content: '12';
+    font-weight: bold;
+    right: var(--pos);
+    top: var(--pos);
+    transform-origin: top right;
+    transform: scale(0.1) translate(-1.5em, 0.5em);
+}
+
+.clock .clock-face .shapebutt {
+    grid-area: b3;
+}
+
+.clock .clock-face .shapebutt::after {
+    content: '';
+    left: var(--pos);
+    bottom: var(--pos);
+    background: currentColor;
+    transform: translate(60%, -60%);
+    border-radius: 50%;
+    height: 0.1em;
+    width: 0.1em;
+    opacity: 0.6;
+}
+
+.clock.square .clock-face .shapebutt::after {
+    border-radius: 0.024em;
+}
+
+.clock .clock-face .contbutt {
+    grid-area: b4;
+}
+
+.clock .clock-face .contbutt::after {
+    content: '';
+    right: var(--pos);
+    bottom: var(--pos);
+    transform: translate(-60%, -60%);
+    border-radius: 50%;
+    height: 0.1em;
+    width: 0.1em;
+    border: 0.015em currentColor;
+    border-style: dotted;
+    box-sizing: border-box;
+}
+
+.clock.continuous .clock-face .contbutt::after {
+    border-style: solid;
+    opacity: 0.8;
+}

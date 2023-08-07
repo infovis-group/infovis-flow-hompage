@@ -1,0 +1,192 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "personType": 0,
+            "personLabel": "调度员",
+            "personLabelId": 1,
+            "childrenList": [
+                {
+                    "personType": 0,
+                    "personLabel": "网调",
+                    "personLabelId": 2,
+                    "childrenList": null
+                },
+                {
+                    "personType": 0,
+                    "personLabel": "市调",
+                    "personLabelId": 3,
+                    "childrenList": null
+                },
+                {
+                    "personType": 0,
+                    "personLabel": "地调",
+                    "personLabelId": 4,
+                    "childrenList": [
+                        {
+                            "personType": 0,
+                            "personLabel": "城东地调",
+                            "personLabelId": 5,
+                            "childrenList": [
+                                {
+                                    "personType": null,
+                                    "personLabel": "城东地调调度员1",
+                                    "personLabelId": 1,
+                                    "childrenList": null
+                                },
+                                {
+                                    "personType": null,
+                                    "personLabel": "城东地调调度员2",
+                                    "personLabelId": 2,
+                                    "childrenList": null
+                                },
+                                {
+                                    "personType": null,
+                                    "personLabel": "城东地调调度员3",
+                                    "personLabelId": 3,
+                                    "childrenList": null
+                                }
+                            ]
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "城西地调",
+                            "personLabelId": 6,
+                            "childrenList": [
+                                {
+                                    "personType": null,
+                                    "personLabel": "城西地调调度员1",
+                                    "personLabelId": 4,
+                                    "childrenList": null
+                                }
+                            ]
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "城南地调",
+                            "personLabelId": 7,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "滨海地调",
+                            "personLabelId": 8,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "静海地调",
+                            "personLabelId": 9,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "武清地调",
+                            "personLabelId": 10,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "东丽地调",
+                            "personLabelId": 11,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "宝坻地调",
+                            "personLabelId": 12,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": 0,
+                            "personLabel": "宁河地调",
+                            "personLabelId": 13,
+                            "childrenList": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "personType": 1,
+            "personLabel": "变电站运维人员",
+            "personLabelId": 14,
+            "childrenList": [
+                {
+                    "personType": 1,
+                    "personLabel": "北郊中心站",
+                    "personLabelId": 15,
+                    "childrenList": [
+                        {
+                            "personType": null,
+                            "personLabel": "北郊中心站人员1",
+                            "personLabelId": 5,
+                            "childrenList": null
+                        },
+                        {
+                            "personType": null,
+                            "personLabel": "北郊中心站人员2",
+                            "personLabelId": 6,
+                            "childrenList": null
+                        }
+                    ]
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "孟港后中心站",
+                    "personLabelId": 16,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "葛沽中心站",
+                    "personLabelId": 17,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "卫国通中心站",
+                    "personLabelId": 18,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "津奥中心站",
+                    "personLabelId": 19,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "双源中心站",
+                    "personLabelId": 20,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "勤俭道中心站",
+                    "personLabelId": 21,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "海河中心站",
+                    "personLabelId": 22,
+                    "childrenList": null
+                },
+                {
+                    "personType": 1,
+                    "personLabel": "天津南中心站",
+                    "personLabelId": 23,
+                    "childrenList": null
+                }
+            ]
+        },
+        {
+            "personType": 2,
+            "personLabel": "自动化值班员",
+            "personLabelId": 24,
+            "childrenList": null
+        }
+    ]
+}

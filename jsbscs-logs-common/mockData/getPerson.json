@@ -1,0 +1,162 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "label": "调度员",
+            "value": 1,
+            "children": [
+                {
+                    "label": "网调",
+                    "value": 2,
+                    "children": null
+                },
+                {
+                    "label": "市调",
+                    "value": 3,
+                    "children": null
+                },
+                {
+                    "label": "地调",
+                    "value": 4,
+                    "children": [
+                        {
+                            "label": "城东地调",
+                            "value": 5,
+                            "children": [
+                                {
+                                    "label": "城东地调调度员1",
+                                    "value": 1,
+                                    "children": null
+                                },
+                                {
+                                    "label": "城东地调调度员2",
+                                    "value": 2,
+                                    "children": null
+                                },
+                                {
+                                    "label": "城东地调调度员3",
+                                    "value": 3,
+                                    "children": null
+                                }
+                            ]
+                        },
+                        {
+                            "label": "城西地调",
+                            "value": 6,
+                            "children": [
+                                {
+                                    "label": "城西地调调度员1",
+                                    "value": 4,
+                                    "children": null
+                                }
+                            ]
+                        },
+                        {
+                            "label": "城南地调",
+                            "value": 7,
+                            "children": null
+                        },
+                        {
+                            "label": "滨海地调",
+                            "value": 8,
+                            "children": null
+                        },
+                        {
+                            "label": "静海地调",
+                            "value": 9,
+                            "children": null
+                        },
+                        {
+                            "label": "武清地调",
+                            "value": 10,
+                            "children": null
+                        },
+                        {
+                            "label": "东丽地调",
+                            "value": 11,
+                            "children": null
+                        },
+                        {
+                            "label": "宝坻地调",
+                            "value": 12,
+                            "children": null
+                        },
+                        {
+                            "label": "宁河地调",
+                            "value": 13,
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "变电站运维人员",
+            "value": 14,
+            "children": [
+                {
+                    "label": "北郊中心站",
+                    "value": 15,
+                    "children": [
+                        {
+                            "label": "北郊中心站人员1",
+                            "value": 5,
+                            "children": null
+                        },
+                        {
+                            "label": "北郊中心站人员2",
+                            "value": 6,
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "孟港后中心站",
+                    "value": 16,
+                    "children": null
+                },
+                {
+                    "label": "葛沽中心站",
+                    "value": 17,
+                    "children": null
+                },
+                {
+                    "label": "卫国通中心站",
+                    "value": 18,
+                    "children": null
+                },
+                {
+                    "label": "津奥中心站",
+                    "value": 19,
+                    "children": null
+                },
+                {
+                    "label": "双源中心站",
+                    "value": 20,
+                    "children": null
+                },
+                {
+                    "label": "勤俭道中心站",
+                    "value": 21,
+                    "children": null
+                },
+                {
+                    "label": "海河中心站",
+                    "value": 22,
+                    "children": null
+                },
+                {
+                    "label": "天津南中心站",
+                    "value": 23,
+                    "children": null
+                }
+            ]
+        },
+        {
+            "label": "自动化值班员",
+            "value": 24,
+            "children": null
+        }
+    ]
+}

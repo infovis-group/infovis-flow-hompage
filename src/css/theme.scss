@@ -1,0 +1,195 @@
+@import './themes/_light.scss';
+@import './themes/_dark.scss';
+
+$themes: (
+    dark: $default-theme,
+    light: $light-theme
+);
+@mixin themeify {
+    @each $theme-name, $theme-map in $themes {
+        $theme-map: $theme-map !global;
+
+        html[data-theme='#{$theme-name}'] & {
+            @content;
+        }
+    }
+}
+
+// 根据Key值获取颜色
+@function themed($key) {
+    @return map-get($theme-map, $key);
+}
+// 获取字体颜色
+@mixin set-font-color($color) {
+    @include themeify {
+        color: themed($color);
+    }
+}
+@mixin set-border-color($color) {
+    @include themeify {
+        border-color: themed($color);
+    }
+}
+
+@mixin set-bg-color($color) {
+    @include themeify {
+        background-color: themed($color);
+    }
+}
+@mixin set-bg($color) {
+    @include themeify {
+        background: themed($color);
+    }
+}
+@mixin set-text-shadow($color) {
+    @include themeify {
+        text-shadow: themed($color);
+    }
+}
+// 间隔色
+@mixin set-stripe-color(
+    $color: 'default-font-color',
+    $angle: -45deg,
+    $size-h: 25%,
+    $size-w: 100%,
+    $isX: true
+) {
+    @if ($isX) {
+        @include themeify {
+            background-image: linear-gradient(
+                $angle,
+                themed($color) 25%,
+                transparent 25%,
+                transparent 50%,
+                transparent 75%,
+                themed($color) 75%
+            );
+        }
+    } @else {
+        @include themeify {
+            background-image: linear-gradient(
+                $angle,
+                themed($color) 25%,
+                transparent 25%,
+                transparent 50%,
+                themed($color) 50%,
+                themed($color) 75%,
+                transparent 75%
+            );
+        }
+    }
+    background-repeat: repeat;
+    background-size: $size-h $size-w;
+}
+
+@mixin set-text-outline($color: 'default-font-color', $isTheme: true) {
+    @if ($isTheme) {
+        @include themeify {
+            text-shadow: -1px -1px themed($color), -1px 1px themed($color), 1px -1px themed($color),
+                1px 1px themed($color);
+        }
+    } @else {
+        text-shadow: -1px -1px $color, -1px 1px $color, 1px -1px $color, 1px 1px $color;
+    }
+}
+
+/* z-index */
+$z-index: ();
+
+@function z-index($key) {
+    @return map-get($z-index, $key);
+}
+
+@mixin z-index($key) {
+    z-index: z-index($key);
+}
+
+@mixin btnHover() {
+    @include themeify {
+        color: themed('default-border-color');
+        background-color: themed('default-hover-bg-color');
+        opacity: 0.8;
+    }
+}
+@mixin set-watermark-color($color) {
+    @include themeify {
+        background-image: linear-gradient(
+                0deg,
+                themed($color) 0rem,
+                themed($color) 0.1rem,
+                transparent 0.1rem,
+                transparent 10rem
+            ),
+            linear-gradient(
+                90deg,
+                themed($color) 0rem,
+                themed($color) 0.1rem,
+                transparent 0.1rem,
+                transparent 10rem
+            );
+    }
+}
+@mixin set-watermark-opacity($opacity) {
+    @include themeify {
+        opacity: themed($opacity);
+    }
+}
+
+@mixin set-shadow($opacity) {
+    @include themeify {
+        box-shadow: themed($opacity);
+    }
+}
+
+@mixin set-right-border($opacity) {
+    @include themeify {
+        border-right: themed($opacity);
+    }
+}
+
+@mixin set-header-bg() {
+    background-size: 100%, cover;
+    background-repeat: no-repeat;
+    @include themeify {
+        background-image: themed('header-bg-1'), themed('header-bg-2');
+    }
+}
+
+@mixin modal-card-footer-btn() {
+    @include themeify {
+        font-size: 1.8rem;
+        padding: 0 3rem;
+        margin: 0 1.5rem;
+        border: 1px solid;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        display: inline-block;
+        transition: transform 0.2s;
+    }
+}
+@mixin modal-card-footer-cntr() {
+    @include themeify {
+        position: absolute;
+        // right: 1rem;
+        bottom: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* card radius */
+$card-radius: (
+    card: 1rem,
+    card-layer-1: 0.8rem,
+    card-layer-2: 0.6rem,
+    card-layer-3: 0.5rem,
+    card-layer-4: 0.4rem
+);
+
+@function card-radius($key) {
+    @return map-get($card-radius, $key);
+}
+
+@mixin card-radius($key) {
+    border-radius: card-radius($key);
+}

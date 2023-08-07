@@ -1,0 +1,11 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": {
+        "patrolTime": "2023-06-24 23:59:59",
+        "patrolScope": "巡视范围",
+        "patrolPerson": "张大",
+        "patrolResult": "巡视结果",
+        "patrolId": "3a75a91a-c34f-4f85-97f0-1778bc472333"
+    }
+}

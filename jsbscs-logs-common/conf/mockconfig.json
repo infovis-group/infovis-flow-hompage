@@ -1,0 +1,7 @@
+{
+    "url": {
+        "block": true,
+        "alternative": "用来替换的mock路径",
+        "comment": "block为true时，不在进行ajax请求而是直接用 mock，如果制定了 alternative，则使用 alternative中配置的mock进行替换"
+    }
+}

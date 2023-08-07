@@ -1,0 +1,9 @@
+[
+    {
+        "comment": "id表示卡片id同一个id的卡片只能打开一个,全局唯一",
+        "id": "testCard",
+        "name": "测试卡片",
+        "icon": "<i class=\"fas fa-calendar-week\"></i>",
+        "src": "./test.html"
+    }
+]

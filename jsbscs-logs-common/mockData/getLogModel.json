@@ -1,0 +1,132 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": {
+        "resultTemplate": "${bayName} ${logSubType}",
+        "fields": [
+            {
+                "key": "stId",
+                "value": "stName",
+                "label": "厂站",
+                "type": "select",
+                "required": true,
+                "source": "v1/ccs/op/model/getJkDevInfoByRetrieval?devType=substation,",
+                "method": "post",
+                "searchName": "devName"
+            },
+            {
+                "key": "bayId",
+                "value": "bayName",
+                "label": "间隔",
+                "type": "select",
+                "required": true,
+                "source": "v1/ccs/op/model/getJkDevInfoByRetrieval?devType=bay,&stId=${stId}",
+                "method": "post",
+                "searchName": "devName"
+            },
+            {
+                "key": "startTime",
+                "value": "startTime",
+                "label": "时间",
+                "type": "time",
+                "required": true
+            },
+            {
+                "key": "logSubType",
+                "value": "logSubType",
+                "label": "类型",
+                "type": "select",
+                "required": true,
+                "data": [
+                    {
+                        "logSubType": "AVC异常"
+                    },
+                    {
+                        "logSubType": "系统软硬件异常"
+                    }
+                ]
+            },
+            {
+                "key": "ifDefect",
+                "value": "ifDefectName",
+                "label": "是否缺陷",
+                "type": "radio",
+                "required": true,
+                "defaultValue": 1,
+                "data": [
+                    {
+                        "ifDefect": 1,
+                        "ifDefectName": "是",
+                        "notRequired": ["bayId"]
+                    },
+                    {
+                        "ifDefect": 0,
+                        "ifDefectName": "否",
+                        "disable": ["defectLevel"]
+                    }
+                ]
+            },
+            {
+                "key": "defectLevel",
+                "value": "defectLevelName",
+                "label": "缺陷等级",
+                "type": "radio",
+                "required": true,
+                "defaultValue": 2,
+                "data": [
+                    {
+                        "defectLevel": 1,
+                        "defectLevelName": "一般"
+                    },
+                    {
+                        "defectLevel": 2,
+                        "defectLevelName": "危急"
+                    },
+                    {
+                        "defectLevel": 3,
+                        "defectLevelName": "严重"
+                    }
+                ]
+            },
+            {
+                "key": "ifPf",
+                "value": "ifPfName",
+                "label": "是否频发",
+                "type": "radio",
+                "required": false,
+                "data": [
+                    {
+                        "ifPf": 1,
+                        "ifPfName": "是"
+                    },
+                    {
+                        "ifPf": 0,
+                        "ifPfName": "否"
+                    }
+                ]
+            },
+            {
+                "key": "dispatchContent",
+                "value": "dispatchContent",
+                "label": "内容",
+                "type": "input-select",
+                "required": false,
+                "source": "monitors/log/getEnumsDefine?enumsType=dispatchContent",
+                "method": "get",
+                "saveSource": "monitors/log/insertEnumsDefine?enumsType=dispatchContent&enumsValue=${dispatchContent}"
+            },
+            {
+                "key": "before",
+                "value": "before",
+                "label": "分头位置 调整前",
+                "type": "number"
+            },
+            {
+                "key": "after",
+                "value": "after",
+                "label": "分头位置 调整后",
+                "type": "number"
+            }
+        ]
+    }
+}

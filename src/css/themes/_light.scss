@@ -1,0 +1,73 @@
+$header-stripe: hsla(var(--base-h), 67%, 81%, 0.6);
+$light-theme: (
+    // 字体颜色
+    default-font-color: hsl(0, 0%, 10%),
+    default-font-gray-color: hsl(0, 0%, 40%),
+    default-hover-color: hsl(var(--base-h), 42%, 39%),
+    health-font-color: hsl(120, 50%, 60%),
+    danger-font-color: hsl(15, 100%, 60%),
+    warning-font-color: hsl(40, 96%, 53%),
+    // 边界线颜色
+    default-border-color: hsl(var(--base-h), 42%, 39%),
+    gray-border-color: hsl(0, 0%, 90%),
+    nav-border: hsl(0, 0%, 75%),
+    title-font-color: hsl(var(--base-h), 42%, 39%),
+    avator-font-color: hsl(0, 0%, 97%),
+    table-thead-color: hsl(0, 0%, 97%),
+    table-tbody-color: hsl(0, 0%, 10%),
+    table-thead-shadow: 0px 0.2rem 0.4rem hsla(var(--base-h), 47%, 45%, 0.5),
+    // 背景色
+    default-bg-color: hsl(0, 0%, 97%),
+    gray-bg-color: hsl(0, 0%, 92%),
+    default-hover-bg-color: hsl(180, 38%, 95%),
+    logo-bg-color: linear-gradient(180deg, hsl(var(--base-h), 49%, 57%), hsl(var(--base-h), 50%, 32%)),
+    table-thead-bg-color: hsl(var(--base-h), 47%, 45%),
+    delete-btn-bg-color: hsl(0, 93%, 58%),
+    delete-btn-hover-bg-color: hsl(0, 63%, 69%),
+    edit-btn-bg-color: hsl(var(--base-h), 47%, 45%),
+    edit-btn-hover-bg-color: hsl(var(--base-h), 47%, 45%),
+    disable-color: hls(var(--base-h), 47%, 45%),
+    header-bg-1: linear-gradient(180deg, transparent, hsl(0, 0%, 70%, 0.3)),
+    header-bg-2:
+        linear-gradient(
+            52deg,
+            transparent 60%,
+            $header-stripe 70%,
+            transparent 80%,
+            $header-stripe 90%,
+            transparent
+        ),
+    // 确认取消按钮颜色
+    btn-bg: hsl(var(--base-h), 32%, 86%),
+    //稍微突出的背景色
+    light-bg-color: hsl(0, 0%, 92%),
+    // 阴影颜色
+    box-shadow-dark-1: hsl(0, 0%, 0%, 0.5),
+    box-shadow-dark-2: hsl(0, 0%, 0%, 0.03),
+    box-shadow-dark-3: hsl(0, 0%, 0%, 0.2),
+    box-shadow-dark-4: hsl(0, 0%, 0%, 0.3),
+    box-shadow-light-1: hsl(0, 0%, 100%, 0.3),
+    box-shadow-light-2: hsl(0, 0%, 100%, 0.4),
+    box-shadow-light-3: hsl(0, 0%, 100%, 0.5),
+    box-shadow-light-4: hsl(0, 0%, 100%, 0.6),
+    //业务模板tab颜色
+    tab-btn-color: hsl(var(--base-h), 38%, 53%),
+    little-text-shadow: 0em 0.2em 0.2em hsl(0, 0%, 0%, 0.3),
+    tree-icon-color: hsl(var(--base-h), 65%, 40%),
+    // 条纹背景色
+    stripe-bg-color: hsl(var(--base-h), 67%, 84%, 0.15),
+    light-hue-bg-color: hsl(var(--base-h), 68%, 59%),
+    //保存取消按钮颜色
+    op-btn-color: hsl(var(--base-h), 38%, 53%),
+    //浅色背景
+    light-base-hue-bg-color: hsl(var(--base-h), 65%, 94%),
+    deep-base-bg-color: hsl(var(--base-h), 55%, 30%),
+    // 表格的颜色样式
+    log-table-thead-bg-color: hsla(var(--base-h), 77%, 91%, 0.69),
+    log-table-thead-border-color: hsl(var(--base-h), 92%, 75%),
+    log-table-tbody-odd-color: hsl(var(--base-h), 5%, 96%),
+    log-table-tbody-hover-color: hsl(0, 0%, 92%),
+    log-page-color: hsl(var(--base-h), 13%, 47%),
+    log-page-num-color: hsl(var(--base-h), 43%, 47%),
+    log-page-select-color: hsl(var(--light-h), 100%, 48%)
+);

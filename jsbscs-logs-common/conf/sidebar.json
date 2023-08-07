@@ -1,0 +1,22 @@
+{
+    "root": [
+        {
+            "children": ["home"]
+        }
+    ],
+    "home": {
+        "icon": "&#xe674;",
+        "name": "首页总览",
+        "default": true,
+        "screen": {
+            "gap": 0,
+            "size": [1, 1],
+            "cards": [
+                {
+                    "id": "testtt",
+                    "pos": [1, 1, 1, 1]
+                }
+            ]
+        }
+    }
+}

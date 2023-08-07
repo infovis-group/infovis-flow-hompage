@@ -1,0 +1,34 @@
+[
+    {
+        "bayId": "bay1",
+        "bayName": "间隔1",
+        "stId": "st1",
+        "stName": "厂站1",
+        "dev_id": "dev1",
+        "dev_name": "设备1"
+    },
+    {
+        "bayId": "bay2",
+        "bayName": "间隔2",
+        "stId": "st2",
+        "stName": "厂站2",
+        "dev_id": "dev2",
+        "dev_name": "设备2"
+    },
+    {
+        "bayId": "bay3",
+        "bayName": "间隔3",
+        "stId": "st3",
+        "stName": "厂站3",
+        "dev_id": "dev3",
+        "dev_name": "设备3"
+    },
+    {
+        "bayId": "bay4",
+        "bayName": "间隔4",
+        "stId": "st4",
+        "stName": "厂站4",
+        "dev_id": "dev4",
+        "dev_name": "设备4"
+    }
+]
