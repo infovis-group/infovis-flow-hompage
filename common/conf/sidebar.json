@@ -5,7 +5,7 @@
         }
     ],
     "home": {
-        "icon": "&#xe674;",
+        "icon": "",
         "name": "首页总览",
         "default": true,
         "screen": {
