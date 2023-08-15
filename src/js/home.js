@@ -9,7 +9,7 @@ import {
     buildSideBar
 } from './sidebar';
 import './card/main';
-import { buildClock } from './common/common';
+// import { buildClock } from './common/common';
 
 export function changeScreen(key) {
     console.log('jam.current', jam.current);
@@ -22,7 +22,7 @@ $(document).ready(() => {
     buildBaseHtml();
     getExternalCard();
     buildSideBar();
-    buildClock({ bottom: '0.6rem', right: '0.6rem' });
+    // buildClock({ bottom: '0.6rem', right: '0.6rem' });
     // 设置全局监听关卡，开卡
     mangoJam.addVariableListener('update', 'os', function (_data) {
         if (!_data) {

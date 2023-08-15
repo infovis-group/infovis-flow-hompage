@@ -3,7 +3,7 @@ $header-height: 7.2rem;
 
 body {
     overflow: hidden;
-    --sidbar-width: 17rem;
+    --sidbar-width: 19rem;
     --sidbar-animation: 700ms;
 
 
@@ -20,7 +20,7 @@ body {
         transition: grid-template-columns var(--sidbar-animation);
         background: url('../../common/image/flow-bus/bg.png') no-repeat;
         background-size: 100% 100%;
-        padding: 0 2rem 2.8rem;
+        padding-bottom:2.3rem;
         box-sizing: border-box;
 
         &::after {
@@ -97,7 +97,7 @@ body {
     overflow: auto;
     background: url('../../common/image/net-resource/left-bj.png') no-repeat;
     background-size: 100% 100%;
-
+    margin-left: 2rem !important;
     // box-shadow: 0px 0.2rem 0.8rem hsla(0, 0%, 15%, 0.5);
     .group-wrap {
         position: relative;
@@ -230,6 +230,10 @@ body {
     // background-color: hsla(210, 50%, 20%, 0.8);
     @include set-bg-color('default-font-gray-color');
     opacity: 0.9;
+}
+
+#body-container{
+    margin-right: 2rem;
 }
 
 .jamui-card {
