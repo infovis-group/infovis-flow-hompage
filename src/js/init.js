@@ -4,16 +4,13 @@ export function buildBaseHtml() {
     if (document.getElementById('body-container')) {
         return;
     }
+
+    // <div class="img"><img src="../../common/image/title.png" /></div>
+    // <div class="title">项目名</div>
     document.body.innerHTML = `
     <div class="main-container">
         <div id="header">
-            <div class="left">
-                <div class="img"><img src="../../common/image/title.png" /></div>
-                <div class="title">项目名</div>
-            </div>
-            <div class="user-info">
-                
-            </div>
+        设备级流量大屏
         </div>
         <div id="sidebar"></div>
         <div id="body-container"></div>

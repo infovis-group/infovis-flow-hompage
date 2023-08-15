@@ -1,13 +1,15 @@
 @import './theme.scss';
-$header-height: 3.5rem;
+$header-height: 7.2rem;
 
 body {
     overflow: hidden;
-    --sidbar-width: 15rem;
+    --sidbar-width: 17rem;
     --sidbar-animation: 700ms;
+
 
     .main-container {
         display: grid;
+        column-gap: 1rem;
         grid-template-rows: $header-height auto;
         grid-template-columns: var(--sidbar-width) auto;
         position: absolute;
@@ -16,6 +18,10 @@ body {
         right: 0;
         bottom: 0;
         transition: grid-template-columns var(--sidbar-animation);
+        background: url('../../common/image/home/bg.png') no-repeat;
+        background-size: 100% 100%;
+        padding:0 2rem 2.8rem;
+        box-sizing: border-box;
     }
 }
 
@@ -23,11 +29,14 @@ body {
 #header {
     grid-area: 1 / 1 / span 1 / span 2;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    line-height: 8.6rem;
     position: relative;
     user-select: none;
     z-index: 2;
-    @include set-header-bg();
+    color: #fff;
+    font-size: 1.6rem;
+    // @include set-header-bg();
 
     @include themeify {
         box-shadow: 0px 0.1rem 0.4rem themed('box-shadow-dark-3');
@@ -72,7 +81,9 @@ body {
     padding: 0 1px;
     z-index: 1;
     overflow: auto;
-
+    background: url('../../common/image/net-resource/left-bj.png') no-repeat;
+    background-size: 100% 100%;
+    
     // box-shadow: 0px 0.2rem 0.8rem hsla(0, 0%, 15%, 0.5);
     .group-wrap {
         padding: 0.5rem 0px;
