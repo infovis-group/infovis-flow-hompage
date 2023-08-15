@@ -1,1 +1,2 @@
 import './testCard';
+import './alarmbrowsing';

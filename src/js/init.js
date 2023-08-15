@@ -1,24 +1,22 @@
 import { loadConf } from './common/common';
+import { buildSideBar } from './sidebar';
 
 export function buildBaseHtml() {
     if (document.getElementById('body-container')) {
         return;
     }
-
-    // <div class="img"><img src="../../common/image/title.png" /></div>
-    // <div class="title">项目名</div>
     document.body.innerHTML = `
     <div class="main-container">
-        <div id="header">
-        设备级流量大屏
-        </div>
+        <div id="header">设备级流量大屏</div>
         <div id="sidebar"></div>
         <div id="body-container"></div>
     </div>
     `;
+
+    buildSideBar();
 }
 export function getExternalCard() {
-    loadConf('card.json', []).forEach((_info) => {
+    loadConf('card.json', []).forEach(_info => {
         new JamCard({
             id: _info.id,
             name: _info.name,

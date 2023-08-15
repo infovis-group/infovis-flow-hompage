@@ -1,19 +1,54 @@
 {
     "root": [
         {
-            "children": ["home"]
+            "children": [
+                "home",
+                "topology-display",
+                "network-resource-discovery",
+                "define-trusted-hosts",
+                "universal-traffic-bus-monitoring",
+                "typical-remote-control",
+                "alarm-browsing"
+            ]
         }
     ],
     "home": {
         "icon": "",
-        "name": "首页总览",
+        "name": "首页",
         "default": true,
+        "show": false,
+        "src":"test.html"
+    },
+    "topology-display": {
+        "name": "拓扑展示",
+        "src": "test.html",
+        "show": false
+    },
+    "network-resource-discovery": {
+        "name": "网络资源发现",
+        "src": "test.html"
+    },
+    "define-trusted-hosts": {
+        "name": "定义可信主机",
+        "src": "test.html"
+    },
+    "universal-traffic-bus-monitoring": {
+        "name": "通用流量总线监控",
+        "show": false,
+        "src": "test.html"
+    },
+    "typical-remote-control": {
+        "name": "典型遥控",
+        "src": "test.html"
+    },
+    "alarm-browsing": {
+        "name": "告警浏览",
         "screen": {
             "gap": 0,
             "size": [1, 1],
             "cards": [
                 {
-                    "id": "testtt",
+                    "id": "alarmBrowsing",
                     "pos": [1, 1, 1, 1]
                 }
             ]

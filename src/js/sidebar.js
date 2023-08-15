@@ -3,7 +3,7 @@ import { changeScreen } from './home';
 import { userInfo } from './main';
 let _selectDom;
 // 根绝sidebar.json生成侧边栏和卡片screen
-const outterUrl = loadConf("config.json")?.externalUrl || '';
+const outterUrl = loadConf('config.json')?.externalUrl || '';
 export function buildSideBar() {
     const _sideBar = document.getElementById('sidebar');
     if (_sideBar.childElementCount) {
@@ -12,7 +12,7 @@ export function buildSideBar() {
     const sidebarConf = loadConf('sidebar.json');
     const _screenConfig = {};
     let _initScreen = null;
-    sidebarConf.root.forEach((_groupItem) => {
+    sidebarConf.root.forEach(_groupItem => {
         const _groupWrap = document.createElement('div');
         _groupWrap.className = 'group-wrap';
         _groupWrap.innerHTML = `
@@ -20,7 +20,7 @@ export function buildSideBar() {
             <div class="group-item"></div>
         `;
         const _infoCntr = document.createDocumentFragment();
-        _groupItem.children.forEach((_key) => buildItem(_key, _infoCntr));
+        _groupItem.children.forEach(_key => buildItem(_key, _infoCntr));
         _groupWrap.lastElementChild.appendChild(_infoCntr);
         _sideBar.appendChild(_groupWrap);
     });
@@ -48,18 +48,16 @@ export function buildSideBar() {
             const _baseConf = {
                 id: _key,
                 name: _info.name,
-                src: _info.src ? outterUrl + _info.src  + '?userId=' + userInfo.userId: null
+                src: _info.src ? outterUrl + _info.src + '?userId=' + userInfo.userId : null
             };
-            _screenConfig[_key] = _info.screen
-                ? Object.assign(_baseConf, _info.screen)
-                : _baseConf;
+            _screenConfig[_key] = _info.screen ? Object.assign(_baseConf, _info.screen) : _baseConf;
             debug('_screenConfig', _screenConfig);
             _dom.onclick = function () {
                 if (_dom === _selectDom) {
                     return;
                 }
                 _dom.classList.add('select');
-                _selectDom.classList.remove('select');
+                if (_selectDom instanceof HTMLElement) _selectDom.classList.remove('select');
                 _selectDom = _dom;
                 changeScreen(_key);
             };
@@ -87,7 +85,7 @@ export function buildSideBar() {
         const _childrenWrap = document.createElement('div');
         _childrenWrap.className = 'children-wrap';
         _childrenWrap.style.setProperty('--children-count', _info.children.length);
-        _info.children.forEach((_childKey) => buildItem(_childKey, _childrenWrap));
+        _info.children.forEach(_childKey => buildItem(_childKey, _childrenWrap));
         // 父容器
         const _warp = document.createElement('div');
         _warp.className = 'item-haschildren-wrap' + (_flag ? ' open' : '');

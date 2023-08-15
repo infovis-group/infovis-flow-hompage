@@ -1,13 +1,7 @@
 import '../css/home.scss';
 import '../css/common.scss';
 import './card/main';
-import {
-    buildBaseHtml,
-    getExternalCard
-} from './init';
-import {
-    buildSideBar
-} from './sidebar';
+import { buildBaseHtml, getExternalCard } from './init';
 import './card/main';
 // import { buildClock } from './common/common';
 
@@ -21,7 +15,6 @@ export function changeScreen(key) {
 $(document).ready(() => {
     buildBaseHtml();
     getExternalCard();
-    buildSideBar();
     // buildClock({ bottom: '0.6rem', right: '0.6rem' });
     // 设置全局监听关卡，开卡
     mangoJam.addVariableListener('update', 'os', function (_data) {
