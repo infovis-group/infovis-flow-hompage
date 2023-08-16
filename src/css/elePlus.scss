@@ -15,6 +15,18 @@
     .el-button {
         border: none;
     }
+
+    .el-button.query-btn {
+        height: 32px;
+        width: 65px;
+        background: url('../../common/image/typeical-monitoring/query.png') no-repeat;
+        border-radius: 0;
+
+        &:hover {
+            transform: scale(1.05);
+            animation: all 0.5s ease-in-out;
+        }
+    }
 }
 
 .el-table {
@@ -22,14 +34,14 @@
     // --el-table-border-color: rgb(53, 53, 53) !important;
     --el-table-border-color: none !important;
     --el-table-row-hover-bg-color: rgba(0, 158, 250, 0.219) !important;
-    --el-table-current-row-bg-color:none;
+    --el-table-current-row-bg-color: none;
 
     thead tr {
         background-color: transparent !important;
     }
 
     th.el-table__cell {
-        background: url('../../common/image/net-resource/thead.png') no-repeat;
+        background: url("../../common/image/net-resource/thead.png") no-repeat;
         background-size: 100% 100%;
         background-color: transparent !important;
         color: #bff0ff;
@@ -43,10 +55,8 @@
         border: none !important;
 
         &:nth-child(2n) {
-            background: url('../../common/image/net-resource/tr.png') no-repeat;
+            background: url("../../common/image/net-resource/tr.png") no-repeat;
             background-size: 100% 100%;
         }
-
     }
-
 }

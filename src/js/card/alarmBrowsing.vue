@@ -230,7 +230,7 @@ const tableData = reactive([
 
 // 引入公共hook动态设置表格高度
 const tables = ref()
-const { tableHeight } = set_table_height(tables, 200)
+const { tableHeight } = set_table_height(tables, 230)
 
 onMounted(() => {
 
@@ -245,22 +245,15 @@ const queryBtn = () => {
 
 
 <style lang="scss" scoped>
-$white : #fff;
 
 .alarm-browsing {
     height: 100%;
-    color: $white;
-    background: url('../../../common/image/net-resource/box-3.png') no-repeat;
-    background-size: 100% 100%;
+    color: #fff;
     padding: 2rem;
     box-sizing: border-box;
-
-    .el-button.query-btn {
-        height: 32px;
-        width: 65px;
-        background: url('../../../common/image/typeical-monitoring/query.png') no-repeat;
-        border-radius: 0;
-    }
+    background: url('../../../common/image/net-resource/box-3.png') no-repeat;
+    background-size: 100% 100%;
+  
 
 }
 </style>

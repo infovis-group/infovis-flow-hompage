@@ -1,17 +1,27 @@
 import {
     ref,
-    onMounted
+    onMounted,
+    onUnmounted
 } from 'vue';
 
 
 export default function (tables, offNum) {
     const tableHeight = ref(0)
     onMounted(() => {
-        console.log(tables);
-        tableHeight.value = window.innerHeight - tables.value.$el.offsetTop - 200
+        tableHeight.value = window.innerHeight - tables.value.$el.offsetTop - offNum
         window.onresize = function () {
-            tableHeight.value = window.innerHeight - tables.value.$el.offsetTop - 200
+            tableHeight.value = window.innerHeight - tables.value.$el.offsetTop - offNum
         }
+
+    console.log(tables);
+    console.log(tableHeight.value);
+
+
+    })
+
+
+    onUnmounted(() => {
+        window.onresize = null
     })
 
     return {

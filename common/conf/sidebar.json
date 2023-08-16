@@ -26,11 +26,29 @@
     },
     "network-resource-discovery": {
         "name": "网络资源发现",
-        "src": "test.html"
+        "screen": {
+            "gap": 0,
+            "size": [1, 1],
+            "cards": [
+                {
+                    "id": "networkResource",
+                    "pos": [1, 1, 1, 1]
+                }
+            ]
+        }
     },
     "define-trusted-hosts": {
         "name": "定义可信主机",
-        "src": "test.html"
+        "screen": {
+            "gap": 0,
+            "size": [1, 1],
+            "cards": [
+                {
+                    "id": "defineCrediblehost",
+                    "pos": [1, 1, 1, 1]
+                }
+            ]
+        }
     },
     "universal-traffic-bus-monitoring": {
         "name": "通用流量总线监控",
@@ -39,7 +57,16 @@
     },
     "typical-remote-control": {
         "name": "典型遥控",
-        "src": "test.html"
+        "screen": {
+            "gap": 0,
+            "size": [1, 1],
+            "cards": [
+                {
+                    "id": "typicalRemotecontro",
+                    "pos": [1, 1, 1, 1]
+                }
+            ]
+        }
     },
     "alarm-browsing": {
         "name": "告警浏览",
