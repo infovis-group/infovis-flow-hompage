@@ -20,7 +20,7 @@ body {
         transition: grid-template-columns var(--sidbar-animation);
         background: url('../../common/image/flow-bus/bg.png') no-repeat;
         background-size: 100% 100%;
-        padding-bottom:2.3rem;
+        padding-bottom: 2.3rem;
         box-sizing: border-box;
 
         &::after {
@@ -98,6 +98,7 @@ body {
     background: url('../../common/image/net-resource/left-bj.png') no-repeat;
     background-size: 100% 100%;
     margin-left: 2rem !important;
+
     // box-shadow: 0px 0.2rem 0.8rem hsla(0, 0%, 15%, 0.5);
     .group-wrap {
         position: relative;
@@ -139,13 +140,14 @@ body {
         background: url('../../common/image/net-resource/box-5.png') no-repeat;
         background-size: 100% 100%;
         background-color: transparent !important;
+        margin-bottom: 2rem;
 
         .iconfont {
             font-size: 1.2rem;
         }
 
         .item-cntr-text {
-            font-size: 1.2rem;
+            font-size: 1rem;
             white-space: nowrap;
             overflow: hidden;
             margin-left: 4.7rem;
@@ -169,6 +171,12 @@ body {
             @include set-font-color('title-font-color');
             @include set-bg-color('default-hover-bg-color');
             font-weight: bold;
+            background: url('../../common/image/net-resource/box-4.png') no-repeat;
+            background-size: 100% 100%;
+
+            .item-cntr-text {
+                color: #27dcf4 !important;
+            }
 
             // &::before {
             //     content: '';
@@ -232,7 +240,7 @@ body {
     opacity: 0.9;
 }
 
-#body-container{
+#body-container {
     margin-right: 2rem;
 }
 

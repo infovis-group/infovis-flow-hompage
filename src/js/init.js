@@ -7,7 +7,7 @@ export function buildBaseHtml() {
     }
     document.body.innerHTML = `
     <div class="main-container">
-        <div id="header">设备级流量大屏</div>
+        <div id="header">设 备 级 流 量 大 屏</div>
         <div id="sidebar"></div>
         <div id="body-container"></div>
     </div>
