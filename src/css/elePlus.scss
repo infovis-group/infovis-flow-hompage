@@ -1,31 +1,28 @@
-.el-form {
-    .el-form-item__label {
-        color: #fff;
-    }
+.el-form-item__label {
+    color: #fff;
+}
 
-    .el-input__wrapper {
-        background-color: transparent;
-        box-shadow: 0 0 0 1px #1f6c9b;
-    }
+.el-input__wrapper,
+.el-textarea__inner {
+    background-color: transparent;
+    box-shadow: 0 0 0 1px #1f6c9b;
+    outline: none;
+    color: #fff;
+}
 
-    .el-input__inner {
-        color: #fff;
-    }
+.el-input__inner {
+    color: #fff;
+}
 
-    .el-button {
-        border: none;
-    }
+.el-button {
+    border: none;
+    height: 32px;
+    width: 65px;
+    border-radius: 0;
 
-    .el-button.query-btn {
-        height: 32px;
-        width: 65px;
-        background: url('../../common/image/typeical-monitoring/query.png') no-repeat;
-        border-radius: 0;
-
-        &:hover {
-            transform: scale(1.05);
-            animation: all 0.5s ease-in-out;
-        }
+    &:hover {
+        transform: scale(1.05);
+        animation: all 0.5s ease-in-out;
     }
 }
 
@@ -45,11 +42,11 @@
         background-size: 100% 100%;
         background-color: transparent !important;
         color: #bff0ff;
-        height: 48px;
+        height: 3rem;
     }
 
     tbody tr {
-        height: 48px;
+        height: 3rem;
         background: #07243d;
         color: #fff;
         border: none !important;
@@ -59,4 +56,47 @@
             background-size: 100% 100%;
         }
     }
+}
+
+.el-tree {
+    background-color: transparent;
+    color: #fff;
+    padding: 0.8rem;
+    box-sizing: border-box;
+    --el-tree-node-hover-bg-color: rgba(0, 158, 250, 0.219) !important;
+
+    .el-tree-node {
+        .el-tree-node__content {
+            color: #68caf4;
+        }
+    }
+
+    .el-tree-node__children {
+        .el-tree-node__content {
+            color: #fff;
+        }
+    }
+
+    .el-tree-node__content {
+        height: 2.5rem;
+    }
+
+    .custom-tree-node {
+        display: flex;
+        align-items: center;
+    }
+
+    .tree-icon {
+        display: inline-block;
+        height: 16px;
+        width: 16px;
+        background: url('../../common/image/net-resource/ddh.png') no-repeat;
+        background-size: 100% 100%;
+        margin-right: 10px;
+    }
+}
+
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
+    background-color: rgba(162, 189, 205, 0.219) !important;
+
 }

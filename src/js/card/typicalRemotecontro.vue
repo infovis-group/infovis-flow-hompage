@@ -13,7 +13,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="default" class="query-btn" @click="queryBtn"></el-button>
+                    <el-button type="default" class="query-btn" @click="query_btn"></el-button>
                 </el-form-item>
             </el-form>
 
@@ -24,7 +24,7 @@
                 <el-table-column prop="targetValue" label="目标值" align="center" />
                 <el-table-column prop="status" label="状态" align="center">
                     <template #default="scope">
-                        <span :style="{ color: scope.row.status === '成功' ? '#1fdfa6' : 'rgb(243, 53, 53)' }">
+                        <span :style="{ color: scope.row.status === '成功' ? statusColor.success : statusColor.error }">
                             {{ scope.row.status }}
                         </span>
                     </template>
@@ -48,7 +48,7 @@
                     <el-table-column prop="targetValue" label="目标值" align="center" />
                     <el-table-column prop="status" label="状态" align="center">
                         <template #default="scope">
-                            <span :style="{ color: scope.row.status === '成功' ? '#1fdfa6' : 'rgb(243, 53, 53)' }">
+                            <span :style="{ color: scope.row.status === '成功' ? statusColor.success : statusColor.error }">
                                 {{ scope.row.status }}
                             </span>
                         </template>
@@ -62,17 +62,27 @@
 <script setup>
 import { reactive, ref, onMounted } from 'vue';
 
-const topbox = ref(null)
-const topTableHeight = ref()
+// 成功失败的状态颜色
+const statusColor = {
+    success: "#1fdfa6",
+    error: "rgb(243, 53, 53)",
+}
 
-const botTablebox = ref(null)
-const botTableHeight = ref()
-
+/**
+ * @description: form表单数据
+ * @return {*}
+ */
 const formData = reactive({
     datetime: "",
     host: "",
 });
 
+/**
+ * @description: 上面表格数据
+ * @return {*}
+ */
+const topbox = ref()
+const topTableHeight = ref()
 const topTableData = reactive([
     {
         startTime: "2023-01-01 12:12:12",
@@ -104,6 +114,12 @@ const topTableData = reactive([
     },
 ])
 
+/**
+ * @description: 下面表格数据
+ * @return {*}
+ */
+const botTablebox = ref()
+const botTableHeight = ref()
 const botTableData = reactive([
     {
         time: "2023-01-01 12:12:12",
@@ -172,10 +188,13 @@ onMounted(() => {
     botTableHeight.value = botTablebox.value.offsetHeight
 })
 
-const queryBtn = () => {
-    console.log(111111);
+/**
+ * @description: 查询按钮
+ * @return {*}
+ */
+const query_btn = () => {
+    console.log('query_btn');
 }
-
 
 </script>
 
@@ -193,6 +212,10 @@ const queryBtn = () => {
         box-sizing: border-box;
         background: url('../../../common/image/typeical-monitoring/box1.png') no-repeat;
         background-size: 100% 100%;
+
+        .el-button.query-btn {
+            background: url('../../../common/image/typeical-monitoring/query.png') no-repeat;
+        }
     }
 
     .tmc__bottom {
@@ -200,9 +223,8 @@ const queryBtn = () => {
         padding: 2rem;
         box-sizing: border-box;
         display: grid;
-        display: grid;
-        grid-template-rows: 8rem auto;
         row-gap: 1.2rem;
+        grid-template-rows: 8rem auto;
         background: url('../../../common/image/typeical-monitoring/box2.png') no-repeat;
         background-size: 100% 100%;
 

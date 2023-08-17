@@ -12,11 +12,6 @@ export default function (tables, offNum) {
         window.onresize = function () {
             tableHeight.value = window.innerHeight - tables.value.$el.offsetTop - offNum
         }
-
-    console.log(tables);
-    console.log(tableHeight.value);
-
-
     })
 
 

@@ -11,7 +11,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-button type="default" class="query-btn" @click="queryBtn"></el-button>
+                <el-button type="default" class="query-btn" @click="query_btn"></el-button>
             </el-form-item>
         </el-form>
 
@@ -21,7 +21,7 @@
             <el-table-column prop="type" label="类型" align="center" />
             <el-table-column prop="grade" label="严重等级" align="center">
                 <template #default="scope">
-                    <span :style="{ color: scope.row.grade === '提醒' ? gradeStyle.tx : gradeStyle.yz }">
+                    <span :style="{ color: scope.row.grade === '提醒' ? gradeColor.remind : gradeColor.serious }">
                         {{ scope.row.grade }}
                     </span>
                 </template>
@@ -35,16 +35,24 @@
 import { reactive, ref, onMounted } from 'vue';
 import set_table_height from '../../vueHook/set_table_height.js'
 
-const gradeStyle = {
-    tx: '#f8cd19',
-    yz: "#ff5f46"
+const gradeColor= {
+    remind: '#f8cd19',
+    serious: "#ff5f46"
 }
 
+/**
+ * @description: form表单数据处理
+ * @return {*}
+ */
 const formData = reactive({
     datetime: "",
     host: "",
 });
 
+/**
+ * @description: 表格数据处理
+ * @return {*}
+ */
 const tableData = reactive([
     {
         time: "2023-01-01",
@@ -227,25 +235,23 @@ const tableData = reactive([
     },
 ])
 
-
 // 引入公共hook动态设置表格高度
 const tables = ref()
 const { tableHeight } = set_table_height(tables, 230)
 
-onMounted(() => {
 
-})
-
-
-const queryBtn = () => {
-    console.log(111111);
+/**
+ * @description: 查询按钮
+ * @return {*}
+ */
+const query_btn = () => {
+    console.log('query_btn');
 }
 
 </script>
 
 
 <style lang="scss" scoped>
-
 .alarm-browsing {
     height: 100%;
     color: #fff;
@@ -253,7 +259,10 @@ const queryBtn = () => {
     box-sizing: border-box;
     background: url('../../../common/image/net-resource/box-3.png') no-repeat;
     background-size: 100% 100%;
-  
+
+    .el-button.query-btn {
+        background: url('../../../common/image/typeical-monitoring/query.png') no-repeat;
+    }
 
 }
 </style>
