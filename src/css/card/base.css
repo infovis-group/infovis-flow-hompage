@@ -1,0 +1,187 @@
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+input,
+p,
+blockquote,
+th,
+td {
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h4,
+h5 {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    /* background-color: #dbe0e4; */
+    color: #333;
+    /* font-family: "Microsoft YaHei", Helvetica, Arial  !important; */
+    /* font-size: 16px; */
+    padding: 0;
+    text-align: left;
+    box-sizing: border-box;
+    font: 16px "Microsoft YaHei", Arial, sans-serif !important;
+}
+
+
+table {
+    border-collapse: collapse;
+}
+
+fieldset,
+img {
+    border: 0 none;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset p {
+    margin: 0;
+    padding: 0 0 0 8px;
+}
+
+legend {
+    display: none;
+}
+
+address,
+caption,
+em,
+strong,
+th,
+i {
+    font-style: normal;
+    font-weight: 400;
+}
+
+table caption {
+    margin-left: -1px;
+}
+
+hr {
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #E4E4E4;
+    border-width: 1px 0;
+    clear: both;
+    height: 2px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+ol,
+ul {
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+}
+
+caption,
+th {
+    text-align: left;
+}
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+    content: ””;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clearfix:after,
+.clearfix:before {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    /* *zoom: 1; */
+}
+
+
+/* 修改浏览器滚动条样式 */
+
+::-webkit-scrollbar {
+    width:6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:vertical {
+    background-color: #0096ff;
+}
+
+.layui-form-item .layui-input-inline{
+    width: 160px;
+}
+.input-box .layui-form-item .layui-input {
+    background-color: transparent !important;
+    border: 2px solid #00afd3 !important;
+    color: #fff !important;
+    width: 160px;
+}
+.input-box .layui-form-item .layui-form-label {
+    color: #fff;
+    font-size: 14px;
+    width: 90px;
+    padding:9px 5px !important;
+}
+.layui-form-checkbox span{
+    color: #fff !important;
+}
+/* header{
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+} */
+.hederli{
+    width: 30%;
+    height: 40px;
+    background: url(../img/newtitleimg.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 30px;
+    color: #6FD2F1;
+    font-size: 20px;
+    /* text-indent: 1.5em; */
+}

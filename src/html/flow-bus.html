@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图形界面</title>
+    <link rel="stylesheet" href="../css/card/base.css">
+    <link rel="stylesheet" href="../../common/js/layui-v2.6.8/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/rem.css">
+    <link rel="stylesheet" href="../css/card/flow-bus.css">
+</head>
+<body>
+    <header>
+        <span>设备级流量大屏</span>
+    </header>
+    <main>
+       <ul class="topheader">
+        <li>
+            <div class="liheader">通信协议</div>
+            <div class="limian" id="lineid"></div>
+        </li>
+        <li>
+            <div class="liheader">服务总线</div>
+            <div class="limian" id="barchart"></div>
+        </li>
+        <li>
+            <div class="liheader">消息总线-通道</div>
+            <div class="dw">单位:KB</div>
+            <div class="limian" id="piechart"></div>
+        </li>
+       </ul> 
+       <ul class="botheader">
+        <li>
+            <div class="liheader">主机流量</div>
+            <div class="dw">单位:KB</div>
+            <div class="limian" id="piechart1"></div>
+        </li>
+        <li>
+            <div class="liheader">在线会话数</div>
+            <div class="dw">单位:个</div>
+            <div class="limian" id="dline"></div>
+        </li>
+        <li>
+            <div class="liheader">服务总线-事件号</div>
+            <div class="dw">单位:KB</div>
+            <div class="limian" id="piechart2"></div>
+        </li>
+       </ul>
+    </main>
+    <footer></footer>
+</body>
+<script src="../../common/js/layui-v2.6.8/layui/layui.js"></script>
+<script src="../../common/js/jquery-3.3.1.js"></script>
+<script src="../../common/js/echarts.min-v5.2.0.js"></script>
+<script src="../../common/js/common.js"></script>
+<script src="./flow-bus.js"></script>
+</html>

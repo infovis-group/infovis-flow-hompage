@@ -1,0 +1,54 @@
+/* 不同屏幕下根元素的大小 */
+@media screen and (min-width: 320px) {
+    html {
+        font-size: calc(320 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 360px) {
+    html {
+        font-size: calc(360 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 372px) {
+    html {
+        font-size: calc(372 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 375px) {
+    html {
+        font-size: calc(375 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 411px) {
+    html {
+        font-size: calc(411 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 750px) {
+    html {
+        font-size: calc(750 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    html {
+        font-size: calc(768 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    html {
+        font-size: calc(1024 / 750 * 100px);
+    }
+}
+
+@media screen and (min-width: 1349px) {
+    html {
+        font-size: calc(1349 / 750 * 100px);
+    }
+}

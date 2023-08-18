@@ -58,6 +58,7 @@
     "dayjs": "^1.11.8",
     "echarts": "^5.4.3",
     "element-plus": "^2.3.6",
+    "layui": "^2.8.13",
     "moment": "^2.29.4",
     "react-bootstrap-daterangepicker": "^8.0.0"
   }
