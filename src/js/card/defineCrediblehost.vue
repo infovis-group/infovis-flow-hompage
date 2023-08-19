@@ -26,12 +26,17 @@
                     <el-form-item label="描述：">
                         <el-input :rows="4" v-model="formData.desc" type="textarea" placeholder="请输入描述内容" />
                     </el-form-item>
-
+                    <el-form-item>
+                        <el-button type="default" class="define-btn" @click="defineList_btn">定义黑白名单</el-button>
+                    </el-form-item>
                 </el-form>
             </div>
         </div>
     </div>
 </template>
+
+
+defineList_btn
 
 <script  setup>
 import { ref, reactive } from 'vue'
@@ -46,8 +51,8 @@ const leftTitleName = '主机信息'
 const formData = reactive({
     hostName: "",
     hostType: "1",
-    listType:"1",
-    desc:""
+    listType: "1",
+    desc: ""
 });
 
 </script>
@@ -72,10 +77,27 @@ const formData = reactive({
         height: 100%;
         width: calc(100% - 18.5rem);
         padding: 1.2rem;
+        padding-right: 2.5rem;
         box-sizing: border-box;
 
-        .el-input,.el-select{
+        .el-input,
+        .el-select {
             width: 38%;
+        }
+
+        :deep(.define-btn) {
+            width: 130px;
+            height: 28px;
+            background-size: 100% 100%;
+            background: url('../../../common/image/net-resource/btn-box.png') no-repeat;
+
+            // color: #88e0fb;
+            span {
+                font-weight: 700;
+                background-image: linear-gradient(to bottom, #88e0fb,  #36b8fc);
+                color: transparent;
+                -webkit-background-clip: text;
+            }
         }
     }
 

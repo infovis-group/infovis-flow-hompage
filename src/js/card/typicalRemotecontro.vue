@@ -202,13 +202,17 @@ const query_btn = () => {
 .typicalRemotecontro {
     height: 100%;
     color: #fff;
-    display: grid;
-    grid-template-rows: 16rem auto;
-    row-gap: 1.2rem;
+    // display: grid;
+    // grid-template-rows: 16rem auto;
+    // row-gap: 1.2rem;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 
     .tmc__top {
+        height: 16rem;;
         padding: 2rem;
+        margin-bottom: 1.2rem;
         box-sizing: border-box;
         background: url('../../../common/image/typeical-monitoring/box1.png') no-repeat;
         background-size: 100% 100%;
@@ -219,7 +223,7 @@ const query_btn = () => {
     }
 
     .tmc__bottom {
-
+        height: calc(100% - 17.2rem);
         padding: 2rem;
         box-sizing: border-box;
         display: grid;
