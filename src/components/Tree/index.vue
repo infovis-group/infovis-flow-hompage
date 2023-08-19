@@ -6,7 +6,7 @@
                 :expand-on-click-node="false" empty-text="暂无数据" @node-click="click_tree">
                 <template #default="{ node, data }">
                     <span class="custom-tree-node">
-                        <i class="tree-icon"></i>
+                        <i class="tree-icon" v-if="node.level === 1"></i>
                         <span>{{ node.label }}</span>
                     </span>
                 </template>
@@ -25,10 +25,21 @@
 import { ref, reactive, defineProps } from 'vue'
 import { ElTree } from 'element-plus'
 
+
+const click_tree = () => {
+    console.log(111111111);
+}
+
+
+const check = (node, data) => {
+    console.log(node);
+    console.log(data);
+}
+
 const { titleName } = defineProps({
-    titleName:{
-        type:String,
-        default:""
+    titleName: {
+        type: String,
+        default: ""
     }
 })
 
@@ -123,10 +134,6 @@ const treeData = ref([
         ],
     },
 ])
-
-const click_tree = (data) => {
-    console.log(data);
-}
 
 /**
  * @description: 新增修改删除按钮操作
