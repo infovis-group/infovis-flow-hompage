@@ -23,6 +23,10 @@
                 </el-table-column>
             </el-table>
 
+            <div class="btn-box">
+                <el-button type="default" class="associahost-btn" @click="associahost_btn">关联到主机</el-button>
+            </div>
+
         </div>
     </div>
 </template>
@@ -141,14 +145,78 @@ const tableData = reactive([
         host: "Scada主机",
         describe: "网卡1",
         status: "离线",
+    }, {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "在线",
+    },
+    {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "离线",
+    }, {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "在线",
+    },
+    {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "离线",
+    }, {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "在线",
+    },
+    {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "离线",
+    }, {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "在线",
+    },
+    {
+        IP: "192.168.201.201",
+        MAC: "xxxxxxxx",
+        hostType: "主机",
+        host: "Scada主机",
+        describe: "网卡1",
+        status: "离线",
     },
 ])
 
 // 引入公共hook动态设置表格高度
 const tables = ref()
-const { tableHeight } = set_table_height(tables, 220)
+const { tableHeight } = set_table_height(tables, 260)
 
 
+
+const associahost_btn = () => {
+    console.log('associahost_btn');
+}
 
 </script>
 
@@ -192,5 +260,24 @@ const { tableHeight } = set_table_height(tables, 220)
             bottom: -10px;
         }
     }
+
+    // .tn-box{
+    :deep(.associahost-btn) {
+        width: 130px;
+        height: 28px;
+        margin-top: 15px;
+        background-size: 100% 100%;
+        background: url('../../../common/image/net-resource/btn-box.png') no-repeat;
+
+        // color: #88e0fb;
+        span {
+            font-weight: 700;
+            background-image: linear-gradient(to bottom, #88e0fb, #36b8fc);
+            color: transparent;
+            -webkit-background-clip: text;
+        }
+    }
+
+    // }
 }
 </style>
