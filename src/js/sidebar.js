@@ -5,13 +5,10 @@ let _selectDom;
 // 根绝sidebar.json生成侧边栏和卡片screen
 const outterUrl = loadConf('config.json')?.externalUrl || '';
 export function buildSideBar() {
-    const _sideBar = document.getElementById('sidebar');
-    if (_sideBar.childElementCount) {
-        return;
-    }
     const sidebarConf = loadConf('sidebar.json');
     const _screenConfig = {};
-    let _initScreen = null;
+    let _initScreen = null,_hasSideBar;
+    const _sideBar = document.getElementById('sidebar');
     sidebarConf.root.forEach(_groupItem => {
         const _groupWrap = document.createElement('div');
         _groupWrap.className = 'group-wrap';
@@ -22,7 +19,7 @@ export function buildSideBar() {
         const _infoCntr = document.createDocumentFragment();
         _groupItem.children.forEach(_key => buildItem(_key, _infoCntr));
         _groupWrap.lastElementChild.appendChild(_infoCntr);
-        _sideBar.appendChild(_groupWrap);
+        if (_sideBar) _sideBar.appendChild(_groupWrap);
     });
     function buildItem(_key, parentDom) {
         const _info = sidebarConf[_key];
@@ -30,20 +27,22 @@ export function buildSideBar() {
             debug(`sidebar.json not include key:${_key}`);
             return;
         }
-        if (_info.show === false) {
-            return;
-        }
         const _dom = document.createElement('div');
         _dom.className = 'item-cntr';
+        if (_info.show === false) {
+            _dom.classList.add('hidden');
+        }
         _dom.id = _key;
         _dom.innerHTML = `
         <span class="icon iconfont">${_info.icon || ''}</span>
         <span class="item-cntr-text">${_info.name}</span>`;
         if (_info.src || _info.screen) {
             if (_initScreen === null && _info.default) {
+                // 设置第一个default菜单
                 _selectDom = _dom;
                 _dom.classList.add('select');
                 _initScreen = _key;
+                _hasSideBar = _info.hasSideBar;
             }
             const _baseConf = {
                 id: _key,
@@ -59,7 +58,7 @@ export function buildSideBar() {
                 _dom.classList.add('select');
                 if (_selectDom instanceof HTMLElement) _selectDom.classList.remove('select');
                 _selectDom = _dom;
-                changeScreen(_key);
+                changeScreen(_key, _info.hasSideBar);
             };
         }
 
@@ -94,6 +93,7 @@ export function buildSideBar() {
         parentDom.appendChild(_warp);
     }
 
+    console.log(_screenConfig);
     window.jam = new Jam({
         screenCntr: document,
         screen: _screenConfig,
@@ -102,5 +102,5 @@ export function buildSideBar() {
         }
     });
     console.log('_initScreen', _initScreen);
-    changeScreen(_initScreen);
+    changeScreen(_initScreen,_hasSideBar);
 }

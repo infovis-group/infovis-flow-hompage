@@ -2,12 +2,36 @@ import '../css/home.scss';
 import '../css/common.scss';
 import './card/main';
 import { buildBaseHtml, getExternalCard } from './init';
+import { buildSideBar } from './sidebar';
 import './card/main';
 // import { buildClock } from './common/common';
 
-export function changeScreen(key) {
+let sidebarStatusTemp = null;
+export function changeScreen(key, hasSideBar) {
     console.log('jam.current', jam.current);
     console.log('key', key);
+    if (sidebarStatusTemp !== hasSideBar) {
+        sidebarStatusTemp = hasSideBar;
+        const mainContainer = document.getElementById('main-container');
+        let bodyContainer = document.getElementById('body-container');
+        if (!hasSideBar) {
+            try {
+                mainContainer.getElementsByClassName('content')[0].removeChild(bodyContainer);
+            } catch (error) {
+                console.warn(error);
+            }
+            document.body.appendChild(bodyContainer);
+            mainContainer.classList.add('hidden');
+        } else {
+            try {
+                document.body.removeChild(bodyContainer);
+            } catch (error) {
+                console.warn(error);
+            }
+            mainContainer.getElementsByClassName('content')[0].appendChild(bodyContainer);
+            mainContainer.classList.remove('hidden');
+        }
+    }
     if (jam.current !== key) {
         jam.buildScreen(key);
     }
@@ -15,6 +39,11 @@ export function changeScreen(key) {
 $(document).ready(() => {
     buildBaseHtml();
     getExternalCard();
+    buildSideBar();
+    const TITLE = document.getElementById('header');
+    TITLE.addEventListener('click', function () {
+        changeScreen('home', false);
+    });
     // buildClock({ bottom: '0.6rem', right: '0.6rem' });
     // 设置全局监听关卡，开卡
     mangoJam.addVariableListener('update', 'os', function (_data) {
