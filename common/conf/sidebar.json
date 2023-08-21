@@ -28,6 +28,7 @@
     "network-resource-discovery": {
         "name": "网络资源发现",
         "hasSideBar": true,
+        "default": true,
         "screen": {
             "gap": 0,
             "size": [1, 1],
@@ -75,7 +76,6 @@
     },
     "alarm-browsing": {
         "name": "告警浏览",
-        "default": true,
         "hasSideBar": true,
         "screen": {
             "gap": 0,
