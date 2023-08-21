@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="../css/card/base.css">
+    <link rel="stylesheet" href="../../common/js/layui-v2.6.8/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/rem.css">
+    <link rel="stylesheet" href="../css/card/index.css">
+</head>
+
+<body>
+    <header>
+        <span>设备级流量大屏</span>
+    </header>
+    <main>
+        <ul class="lfetbox">
+            <li>
+                <div class="liheader">通信协议划分</div>
+                <div class="dw">单位:KB</div>
+                <div class="limian" id="lineid"></div>
+                
+            </li>
+            <li>
+                <div class="liheader">服务接口划分</div>
+                <div class="dw">单位:KB</div>
+                <div class="lilist" id="pieid"></div>
+            </li>
+            <li>
+                <div class="liheader">消息接口划分</div>
+                <div class="dw">单位:KB</div>
+                <div class="lilist" id="pieEchartid"></div>
+                <div class="tdbtn2">通道使用</div>
+                <div class="tdbtn">通道使用</div>
+                <div class="tdbtn1">通道使用</div>
+            </li>
+        </ul>
+        <div class="mainbox">
+            <div class="mianimg">
+                <img src="../../../common/image/home/middle_1.png" alt="">
+            </div>
+        </div>
+        <ul class="rightbox">
+            <li>
+                <div class="liheader">主机信息</div>
+                <div class="dw">单位:KB</div>
+                <div class="zjmina">
+                    <div class="zjli">
+                        <div class="zjlist">
+                            <div class="zjimg">
+                                <img src="../../../common/image/home/icon_1.png" alt="">
+                            </div>
+                            <div class="zjfont">
+                                <span class="zjfont1">主机A</span>
+                                <span class="zjfont2">260.23</span>
+                            </div>
+                        </div>
+                        <div class="zjlist">
+                            <div class="zjimg">
+                                <img src="../../../common/image/home/icon_1.png" alt="">
+                            </div>
+                            <div class="zjfont">
+                                <span class="zjfont1">主机A</span>
+                                <span class="zjfont2">260.23</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="zjli">
+                        <div class="zjlist">
+                            <div class="zjimg">
+                                <img src="../../../common/image/home/icon_1.png" alt="">
+                            </div>
+                            <div class="zjfont">
+                                <span class="zjfont1">主机A</span>
+                                <span class="zjfont2">260.23</span>
+                            </div>
+                        </div>
+                        <div class="zjlist">
+                            <div class="zjimg">
+                                <img src="../../../common/image/home/icon_1.png" alt="">
+                            </div>
+                            <div class="zjfont">
+                                <span class="zjfont1">主机A</span>
+                                <span class="zjfont2">260.23</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </li>
+            <li>
+                <div class="liheader">会话速率TOP5</div>
+                <div class="slmain">
+                    <div class="slmainimg">
+                        <img src="../../../common/image/home/box_3.png" alt="">
+                    </div>
+                    <div class="line1"></div>
+                    <div class="yuan1"></div>
+                    <div class="line2"></div>
+                    <div class="yuan2"></div>
+                    <div class="line3"></div>
+                    <div class="yuan3"></div>
+                    <div class="line4"></div>
+                    <div class="yuan4"></div>
+                    <div class="line5"></div>
+                    <div class="yuan5"></div>
+                    <ul class="sltitle">
+                        <li>
+                            <div class="slfont">主机A-网卡1</div>
+                            <div class="slnum">506.21</div>
+                            <div class="sldw">KB</div>
+                        </li>
+                        <li>
+                            <div class="slfont">主机A-网卡2</div>
+                            <div class="slnum">506.21</div>
+                            <div class="sldw">KB</div>
+                        </li>
+                        <li>
+                            <div class="slfont">主机A-网卡3</div>
+                            <div class="slnum">506.21</div>
+                            <div class="sldw">KB</div>
+                        </li>
+                        <li>
+                            <div class="slfont">主机A-网卡4</div>
+                            <div class="slnum">506.21</div>
+                            <div class="sldw">KB</div>
+                        </li>
+                        <li>
+                            <div class="slfont">主机A-网卡5</div>
+                            <div class="slnum">506.21</div>
+                            <div class="sldw">KB</div>
+                        </li>
+                    </ul>
+
+                </div>
+            </li>
+            <li>
+                <div class="liheader">告警信息</div>
+                <div class="tableid">
+                    <table class="layui-table" id="myTable" lay-filter="myTable"></table>
+                </div>
+            </li>
+        </ul>
+    </main>
+    <footer></footer>
+</body>
+<script src="../../common/js/layui-v2.6.8/layui/layui.js"></script>
+<script src="../../common/js/jquery-3.3.1.js"></script>
+<script src="../../common/js/echarts.min-v5.2.0.js"></script>
+<script src="../../common/js/common.js"></script>
+<script src="./index.js"></script>
+
+</html>

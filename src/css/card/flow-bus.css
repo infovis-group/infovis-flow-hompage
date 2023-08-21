@@ -1,0 +1,76 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: url(../../../common/image/flow-bus/bg.png) no-repeat center center;
+    background-size: 100% 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    height: 126px;
+    background: url(../../../common/image/home/top.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+header span {
+    color: #fff;
+    font-size: 0.16rem;
+    position: absolute;
+    top: 60px;
+    left: calc(50% - 100px);
+}
+
+footer {
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url(../../../common/image/home/bottom.png) no-repeat center center;
+    background-size: 100% 100%;
+}
+
+main {
+    width: 98%;
+    height: calc(100% - 168px);
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.topheader,.botheader{
+    width: 100%;
+    height: 49%;
+    display: flex;
+    justify-content: space-between;
+}
+.topheader li,.botheader li{
+    width: 33%;
+    height: 100%;
+    background: url(../../../common/image/flow-bus/title.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: relative;
+}
+.liheader {
+    margin-left: 0.32rem;
+    color: #fff;
+    font-size: 0.1rem;
+    line-height: 0.22rem;
+}
+.dw {
+    position: absolute;
+    right: 0.1rem;
+    top: 0.2rem;
+    font-size: 0.08rem;
+    color: #666;
+}
+.limian{
+    width: 90%;
+    height: 80%;
+    margin: 0.2rem auto;
+    /* background: rebeccapurple; */
+}
