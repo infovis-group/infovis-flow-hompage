@@ -103,5 +103,16 @@
 
 .el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content {
     background-color: rgba(162, 189, 205, 0.219) !important;
+}
 
+.el-dialog{
+    background: url('../../common/image/net-resource/box2.png') no-repeat;
+    background-size: 100% 100%;
+    background-color:#36b8fc;
+    .el-dialog__header{
+        span{
+            color: #fff !important;
+        }
+    }
+    
 }
