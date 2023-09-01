@@ -4,11 +4,18 @@
 
 .el-input__wrapper,
 .el-textarea__inner,
-.el-range-editor.el-input__wrapper  {
+.el-range-editor.el-input__wrapper {
     background-color: transparent;
     box-shadow: 0 0 0 1px #1f6c9b;
     outline: none;
     color: #fff;
+}
+
+.el-date-editor {
+    .el-range-input,
+    .el-range-separator {
+        color: #fff;
+    }
 }
 
 .el-input__inner {
