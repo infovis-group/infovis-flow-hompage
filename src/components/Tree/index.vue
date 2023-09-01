@@ -15,14 +15,14 @@
 
         <div class="btn-box">
             <el-button type="default" class="add-btn" @click="add_btn"></el-button>
-            <el-button type="default" class="delete-btn" @click="delete_btn"></el-button>
             <el-button type="default" class="edit-btn" @click="edit_btn"></el-button>
+            <el-button type="default" class="delete-btn" @click="delete_btn"></el-button>
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, reactive, defineProps, toRefs } from 'vue'
+import { ref, reactive, defineProps, toRefs, defineEmits,defineExpose } from 'vue'
 import { ElTree } from 'element-plus'
 
 
@@ -36,7 +36,7 @@ const check = (node, data) => {
     console.log(data);
 }
 
-const { titleName, visHostData } = defineProps({
+const { titleName, visHostData, dialogFormVisible } = defineProps({
     titleName: {
         type: String,
         default: ""
@@ -44,6 +44,10 @@ const { titleName, visHostData } = defineProps({
     visHostData: {
         type: Array,
         default: []
+    },
+    dialogFormVisible: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -63,8 +67,17 @@ const treeRef = ref()
  * @description: 新增修改删除按钮操作
  * @return {*}
  */
+ 
+const emit = defineEmits(['update:dialogFormVisible','dialogType'])
+
 const add_btn = () => {
-    console.log('add_btn');
+    emit('update:dialogFormVisible', true)
+    emit('sendDialogType', '新增')
+}
+
+const edit_btn = () => {
+    emit('update:dialogFormVisible', true)
+    emit('sendDialogType', '修改')
 }
 
 const delete_btn = () => {
@@ -73,9 +86,6 @@ const delete_btn = () => {
     console.log(checkNodeData);
 }
 
-const edit_btn = () => {
-    console.log('edit_btn');
-}
 
 
 </script>

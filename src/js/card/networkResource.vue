@@ -1,7 +1,8 @@
 <template>
     <div class='networkResource'>
         <div class="nwr__letf">
-            <left-tree :title-name="leftTitleName" :vis-host-data="visHostData"></left-tree>
+            <left-tree ref="tree" v-model:dialogFormVisible="dialogFormVisible" :title-name="leftTitleName"
+                :vis-host-data="visHostData" @sendDialogType="sendDialogType"></left-tree>
         </div>
 
         <div class="nwr__right">
@@ -9,12 +10,12 @@
             <el-table :data="tableData" style="width: 100%" ref="tables" :max-height="tableHeight"
                 :highlight-current-row="true">
                 <el-table-column type="selection" width="55" />
-                <el-table-column prop="IP" label="IP" align="center" />
-                <el-table-column prop="MAC" label="MAC" align="center" />
-                <el-table-column prop="hostType" label="主机类型" align="center" />
-                <el-table-column prop="host" label="主机" align="center" />
-                <el-table-column prop="describe" label="描述" align="center" />
-                <el-table-column prop="status" label="当前状态" align="center">
+                <el-table-column prop="ip" label="IP" align="center" />
+                <el-table-column prop="mac" label="MAC" align="center" />
+                <el-table-column prop="listType" label="主机类型" align="center" />
+                <el-table-column prop="hostName" label="主机" align="center" />
+                <el-table-column prop="note" label="描述" align="center" />
+                <el-table-column prop="statusName" label="当前状态" align="center">
                     <template #default="scope">
                         <span :style="{ color: scope.row.status === '在线' ? statusColor.online : statusColor.offline }">
                             {{ scope.row.status }}
@@ -29,21 +30,38 @@
 
         </div>
     </div>
+
+    <el-dialog v-model="dialogFormVisible" width="40%" top="20vh" :title="dialogType + '主机信息'" draggable>
+        <el-form :model="formData" label-width="90px">
+            <el-form-item label="主机名称：">
+                <el-input v-model="formData.hostName" placeholder="请输入主机名称" />
+            </el-form-item>
+            <el-form-item label="描述：">
+                <el-input v-model="formData.note" placeholder="请输入描述信息，不能超过32个字符" />
+            </el-form-item>
+        </el-form>
+        <template #footer>
+            <span class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">确 定</el-button>
+                <el-button type="primary" @click="dialogFormVisible = false">
+                    取 消
+                </el-button>
+            </span>
+        </template>
+    </el-dialog>
 </template>
 
 <script setup>
 
-import { ref, reactive, onMounted, toRefs } from 'vue'
+import { ref, reactive, onMounted,watch } from 'vue'
 import set_table_height from '../../vueHook/set_table_height.js'
 import leftTree from '../../components/Tree/index.vue';
 import { ajaxCall } from '../common/common.js';
-
 
 const statusColor = {
     online: '#23e1ac',   // 在线
     offline: "#8db3c9"    // 离线
 }
-
 
 
 /**
@@ -69,7 +87,6 @@ const getNetVisHostInfos = () => {
     });
 }
 
-
 /**
  * @description: 获取表格数据
  * @return {*}
@@ -84,26 +101,42 @@ const getRtNetNcTableData = () => {
         params: JSON.stringify({}),
         success(data) {
             tableData.value = data.list
-            console.log(data);
         },
     });
 }
 
 
+// 控制弹窗打开关闭
+const dialogFormVisible = ref(false)
+
+// 弹窗中的form数据
+const formData = reactive({
+    hostName: "",
+    note: ""
+})
+
+
+const dialogType = ref('')
+const sendDialogType = (val) => {
+    dialogType.value = val
+}
+
 // 引入公共hook动态设置表格高度
 const tables = ref()
 const { tableHeight } = set_table_height(tables, 260)
-
-
 
 const associahost_btn = () => {
     console.log('associahost_btn');
 }
 
-
 onMounted(() => {
     getNetVisHostInfos()
     getRtNetNcTableData()
+})
+
+
+watch(dialogType,(newval,oldVal) => {
+    console.log(newval, oldVal)
 })
 
 

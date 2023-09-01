@@ -105,14 +105,29 @@
     background-color: rgba(162, 189, 205, 0.219) !important;
 }
 
-.el-dialog{
-    background: url('../../common/image/net-resource/box2.png') no-repeat;
+.el-dialog {
+    background: url('../../common/image/dialog/dialog-bg2.png') no-repeat;
     background-size: 100% 100%;
-    background-color:#36b8fc;
-    .el-dialog__header{
-        span{
+
+    .el-dialog__header {
+        padding: 5px 0;
+        background: url('../../common/image/dialog/dialog-title.png') no-repeat;
+        background-size: 100% 100%;
+        text-align: center;
+
+        span {
             color: #fff !important;
         }
     }
-    
+
+    .el-dialog__footer {
+        .el-button {
+            height: 28px;
+            line-height: 28px;
+            background: url('../../common/image/net-resource/btn-box.png') no-repeat;
+            background-size: 100% 100%;
+            color: #fff;
+        }
+    }
+
 }
