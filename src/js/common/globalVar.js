@@ -4,7 +4,7 @@ import _ from 'lodash';
 export const confPath = '../../common/conf/';
 export const mockPath = `../../common/mockData/`;
 export const urlPath =
-    process.env.NODE_ENV === 'development' ? `http://192.168.201.201:18091` : 'logsApi'; //后台包位置
+    process.env.NODE_ENV === 'development' ? `http://192.168.201.95:18090` : 'logsApi'; //后台包位置
 export const authPath =
     process.env.NODE_ENV === 'development' ? `http://192.168.201.201:8878` : 'commonApi'; //后台包位置
 
@@ -15,6 +15,14 @@ export const urlConfig = {
         url: '',
         mockData: ''
     },
+    getNetVisHostInfos:{
+        url: urlPath + '/v1/ccs/op/traffic/getNetVisHostInfos',
+        mockData: 'netVisHostMockData.json'
+    },
+    getRtNetNcInfos:{
+        url: urlPath + '/v1/ccs/op/host/getRtNetNcInfos',
+        mockData: 'getRtNetNcInfos.json'
+    }
 };
 
 let externalUrls;

@@ -1,7 +1,7 @@
 <template>
     <div class='networkResource'>
         <div class="nwr__letf">
-            <left-tree :title-name="leftTitleName"></left-tree>
+            <left-tree :title-name="leftTitleName" :vis-host-data="visHostData"></left-tree>
         </div>
 
         <div class="nwr__right">
@@ -33,180 +33,62 @@
 
 <script setup>
 
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, toRefs } from 'vue'
 import set_table_height from '../../vueHook/set_table_height.js'
 import leftTree from '../../components/Tree/index.vue';
+import { ajaxCall } from '../common/common.js';
+
 
 const statusColor = {
     online: '#23e1ac',   // 在线
     offline: "#8db3c9"    // 离线
 }
 
-const leftTitleName = '主机信息'
 
 
 /**
- * @description: 表格数据获取渲染
+ * @description: 获取主机信息数据接口
  * @return {*}
  */
-const tableData = reactive([
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    }, {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    }, {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    }, {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    }, {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "在线",
-    },
-    {
-        IP: "192.168.201.201",
-        MAC: "xxxxxxxx",
-        hostType: "主机",
-        host: "Scada主机",
-        describe: "网卡1",
-        status: "离线",
-    },
-])
+const leftTitleName = '主机信息'
+let visHostData = ref([])
+const getNetVisHostInfos = () => {
+    ajaxCall('getNetVisHostInfos', {
+        type: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        params: JSON.stringify({}),
+        success(data) {
+            data.forEach((item) => {
+                item.ncName = item.hostName
+            })
+
+            visHostData.value = data
+        },
+    });
+}
+
+
+/**
+ * @description: 获取表格数据
+ * @return {*}
+ */
+const tableData = ref([])
+const getRtNetNcTableData = () => {
+    ajaxCall('getRtNetNcInfos', {
+        type: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        params: JSON.stringify({}),
+        success(data) {
+            tableData.value = data.list
+            console.log(data);
+        },
+    });
+}
+
 
 // 引入公共hook动态设置表格高度
 const tables = ref()
@@ -217,6 +99,13 @@ const { tableHeight } = set_table_height(tables, 260)
 const associahost_btn = () => {
     console.log('associahost_btn');
 }
+
+
+onMounted(() => {
+    getNetVisHostInfos()
+    getRtNetNcTableData()
+})
+
 
 </script>
 
@@ -271,10 +160,11 @@ const associahost_btn = () => {
 
         // color: #88e0fb;
         span {
-            font-weight: 700;
+            font-weight: 700 !important;
             background-image: linear-gradient(to bottom, #88e0fb, #36b8fc);
             color: transparent;
             -webkit-background-clip: text;
+
         }
     }
 

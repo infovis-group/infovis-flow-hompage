@@ -2,8 +2,8 @@
     <div class='TreeCom'>
         <h3 class="title">{{ titleName }}</h3>
         <div class="tree-box">
-            <el-tree ref="treeRef" :data="treeData" show-checkbox node-key="id" highlight-current default-expand-all
-                :expand-on-click-node="false" empty-text="暂无数据" @node-click="click_tree">
+            <el-tree ref="treeRef" :data="visHostData" :props="treeProps" show-checkbox node-key="id" highlight-current
+                default-expand-all :expand-on-click-node="false" empty-text="暂无数据" @node-click="click_tree">
                 <template #default="{ node, data }">
                     <span class="custom-tree-node">
                         <i class="tree-icon" v-if="node.level === 1"></i>
@@ -22,12 +22,12 @@
 </template>
 
 <script setup>
-import { ref, reactive, defineProps } from 'vue'
+import { ref, reactive, defineProps, toRefs } from 'vue'
 import { ElTree } from 'element-plus'
 
 
-const click_tree = () => {
-    console.log(111111111);
+const click_tree = (node, data) => {
+    console.log(node, data);
 }
 
 
@@ -36,104 +36,28 @@ const check = (node, data) => {
     console.log(data);
 }
 
-const { titleName } = defineProps({
+const { titleName, visHostData } = defineProps({
     titleName: {
         type: String,
         default: ""
+    },
+    visHostData: {
+        type: Array,
+        default: []
     }
 })
+
+const treeProps = {
+    label: "ncName",
+    children: "rtConNetNcInfoList"
+}
+
 
 /**
  * @description: tree节点数据获取和渲染
  * @return {*}
  */
 const treeRef = ref()
-const treeData = ref([
-    {
-        id: 1,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 11,
-                label: '网卡1',
-            },
-            {
-                id: 12,
-                label: '网卡2',
-            },
-        ],
-    },
-    {
-        id: 2,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 21,
-                label: '网卡1',
-            },
-            {
-                id: 22,
-                label: '网卡2',
-            },
-        ],
-    },
-    {
-        id: 3,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 31,
-                label: '网卡1',
-            },
-            {
-                id: 32,
-                label: '网卡2',
-            },
-        ],
-    },
-    {
-        id: 4,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 41,
-                label: '网卡1',
-            },
-            {
-                id: 42,
-                label: '网卡2',
-            },
-        ],
-    },
-    {
-        id: 5,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 51,
-                label: '网卡1',
-            },
-            {
-                id: 52,
-                label: '网卡2',
-            },
-        ],
-    },
-    {
-        id: 6,
-        label: 'Scada主机',
-        children: [
-            {
-                id: 61,
-                label: '网卡1',
-            },
-            {
-                id: 62,
-                label: '网卡2',
-            },
-        ],
-    },
-])
 
 /**
  * @description: 新增修改删除按钮操作

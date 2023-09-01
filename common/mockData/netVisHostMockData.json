@@ -1,0 +1,117 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "id": 1692007077624958976,
+            "hostName": "测试111111",
+            "hostType": 1,
+            "port": 0,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": [
+                {
+                    "id": 1,
+                    "ncName": "测试网卡111",
+                    "hostId": 1692007077624958976,
+                    "mac": null,
+                    "ip": "127.0.0.1",
+                    "listType": null,
+                    "timeUpdate": null,
+                    "status": 1,
+                    "note": "这是描述信息",
+                    "hostName": null,
+                    "statusName": null
+                },
+                {
+                    "id": 1692095820058931200,
+                    "ncName": "测试网卡333",
+                    "hostId": 1692007077624958976,
+                    "mac": null,
+                    "ip": null,
+                    "listType": 1,
+                    "timeUpdate": null,
+                    "status": null,
+                    "note": null,
+                    "hostName": null,
+                    "statusName": null
+                }
+            ]
+        },
+        {
+            "id": 0,
+            "hostName": "未定义主机",
+            "hostType": 1,
+            "port": 0,
+            "listType": null,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": [
+                {
+                    "id": 2,
+                    "ncName": "测试网卡222",
+                    "hostId": 0,
+                    "mac": null,
+                    "ip": "127.0.0.1",
+                    "listType": null,
+                    "timeUpdate": null,
+                    "status": 2,
+                    "note": "测试数据",
+                    "hostName": null,
+                    "statusName": null
+                }
+            ]
+        },
+        {
+            "id": 1692075966513819648,
+            "hostName": "测试33333",
+            "hostType": 1,
+            "port": 0,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": []
+        },
+        {
+            "id": 1692089131586826240,
+            "hostName": "测试00000",
+            "hostType": 1,
+            "port": 0,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": []
+        },
+        {
+            "id": 1692352201856925696,
+            "hostName": "测试00000",
+            "hostType": 1,
+            "port": 0,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": []
+        },
+        {
+            "id": 1697149235608731648,
+            "hostName": "新增测试主机",
+            "hostType": 1,
+            "port": 9999,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": []
+        },
+        {
+            "id": 1697149363111378944,
+            "hostName": "新增测试主机111",
+            "hostType": 1,
+            "port": 9999,
+            "listType": 0,
+            "status": 0,
+            "note": null,
+            "rtConNetNcInfoList": []
+        }
+    ]
+}

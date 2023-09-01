@@ -328,6 +328,9 @@ export function ajaxCall(
             console.log('error', error);
             const status = error?.response?.status;
             if (mockData || [404, 405, 501].includes(status)) {
+                if (!_urlInfo.mockData) {
+                    return
+                }
                 axios.get(mockData).then(function (data) {
                     _successFunc(data.data);
                 });
