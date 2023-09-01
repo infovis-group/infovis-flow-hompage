@@ -1,13 +1,15 @@
 import { debug, loadConf } from './common/common';
-import { changeScreen } from './home';
+// import { changeScreen } from './home';
 import { userInfo } from './main';
+import { onHashChange } from './onhashchange';
 let _selectDom;
 // 根绝sidebar.json生成侧边栏和卡片screen
 const outterUrl = loadConf('config.json')?.externalUrl || '';
 export function buildSideBar() {
     const sidebarConf = loadConf('sidebar.json');
     const _screenConfig = {};
-    let _initScreen = null,_hasSideBar;
+    let _initScreen = null,
+        _hasSideBar;
     const _sideBar = document.getElementById('sidebar');
     sidebarConf.root.forEach(_groupItem => {
         const _groupWrap = document.createElement('div');
@@ -58,7 +60,8 @@ export function buildSideBar() {
                 _dom.classList.add('select');
                 if (_selectDom instanceof HTMLElement) _selectDom.classList.remove('select');
                 _selectDom = _dom;
-                changeScreen(_key, _info.hasSideBar);
+                // changeScreen(_key, _info.hasSideBar);
+                location.hash = _key;
             };
         }
 
@@ -101,6 +104,18 @@ export function buildSideBar() {
             canvas: document.getElementById('body-container')
         }
     });
+
+    window.addEventListener('hashchange', () => {
+        onHashChange(sidebarConf);
+    });
     console.log('_initScreen', _initScreen);
-    changeScreen(_initScreen,_hasSideBar);
+    // changeScreen(_initScreen, _hasSideBar);
+
+    let hash = location.hash.slice(location.hash.indexOf('#') + 1);
+    if (!hash) {
+        location.hash = _initScreen;
+    } else {
+        _initScreen = !hash;
+    }
+    onHashChange(sidebarConf, _initScreen);
 }

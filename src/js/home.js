@@ -1,6 +1,5 @@
 import '../css/home.scss';
 import '../css/common.scss';
-import './card/main';
 import { buildBaseHtml, getExternalCard } from './init';
 import { buildSideBar } from './sidebar';
 import './card/main';
@@ -42,7 +41,7 @@ $(document).ready(() => {
     buildSideBar();
     const TITLE = document.getElementById('header');
     TITLE.addEventListener('click', function () {
-        changeScreen('home', false);
+        location.hash='home'
     });
     // buildClock({ bottom: '0.6rem', right: '0.6rem' });
     // 设置全局监听关卡，开卡
