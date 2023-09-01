@@ -22,7 +22,12 @@ export const urlConfig = {
     getRtNetNcInfos:{
         url: urlPath + '/v1/ccs/op/host/getRtNetNcInfos',
         mockData: 'getRtNetNcInfos.json'
+    },
+    getNetVisWarnInfos:{
+        url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos',//告警浏览表格数据
+        mockData: 'getNetVisWarnInfos.json'
     }
+    
 };
 
 let externalUrls;
