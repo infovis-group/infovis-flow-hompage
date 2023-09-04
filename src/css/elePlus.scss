@@ -12,6 +12,7 @@
 }
 
 .el-date-editor {
+
     .el-range-input,
     .el-range-separator {
         color: #fff;
@@ -138,4 +139,8 @@
         }
     }
 
+}
+
+.el-table__row.current-row {
+    background-color: #025188 !important;
 }

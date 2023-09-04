@@ -4,7 +4,7 @@ import _ from 'lodash';
 export const confPath = '../../common/conf/';
 export const mockPath = `../../common/mockData/`;
 export const urlPath =
-    process.env.NODE_ENV === 'development' ? `http://192.168.201.95:18090` : 'logsApi'; //后台包位置
+    process.env.NODE_ENV === 'development' ? `http://192.168.201.113:18090` : 'logsApi'; //后台包位置
 export const authPath =
     process.env.NODE_ENV === 'development' ? `http://192.168.201.201:8878` : 'commonApi'; //后台包位置
 
@@ -26,6 +26,14 @@ export const urlConfig = {
     getNetVisWarnInfos:{
         url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos',//告警浏览表格数据
         mockData: 'getNetVisWarnInfos.json'
+    },
+    getCtrlSessionInfos:{
+        url: urlPath + '/v1/ccs/op/ctrl/getCtrlSessionInfos',//典型遥控上面表格数据
+        mockData: 'getCtrlSessionInfos.json'
+    },
+    getCtrlDetailStepInfos:{
+        url: urlPath + '/v1/ccs/op/ctrl/getCtrlDetailStepInfos',//典型遥控下面表格数据
+        mockData: 'getCtrlDetailStepInfos.json'
     }
     
 };

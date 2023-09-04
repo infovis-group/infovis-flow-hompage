@@ -1,0 +1,56 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": [
+        {
+            "sessionId": "{60cb3f41-0157-4cbd-bdb0-1fe186ca6668}",
+            "timeSec": "2023-08-22 15:48:07",
+            "hostSrc": "vpn1-app1",
+            "procSrc": "sca_contrl_prox",
+            "hostDst": "unkown",
+            "procDst": "sca_remote_ctrl",
+            "result": 0,
+            "phase": 3
+        },
+        {
+            "sessionId": "{60cb3f41-0157-4cbd-bdb0-1fe186ca6668}",
+            "timeSec": "2023-08-22 15:48:07",
+            "hostSrc": "vpn1-app1",
+            "procSrc": "sca_contrl_prox",
+            "hostDst": "unkown",
+            "procDst": "sca_remote_ctrl",
+            "result": 0,
+            "phase": 3
+        },
+        {
+            "sessionId": "{60cb3f41-0157-4cbd-bdb0-1fe186ca6668}",
+            "timeSec": "2023-08-22 15:48:07",
+            "hostSrc": "vpn1-app1",
+            "procSrc": "sca_contrl_prox",
+            "hostDst": "unkown",
+            "procDst": "sca_remote_ctrl",
+            "result": 0,
+            "phase": 3
+        },
+        {
+            "sessionId": "{60cb3f41-0157-4cbd-bdb0-1fe186ca6668}",
+            "timeSec": "2023-08-22 15:48:07",
+            "hostSrc": "vpn1-app1",
+            "procSrc": "sca_contrl_prox",
+            "hostDst": "unkown",
+            "procDst": "sca_remote_ctrl",
+            "result": 0,
+            "phase": 3
+        },
+        {
+            "sessionId": "{60cb3f41-0157-4cbd-bdb0-1fe186ca6668}",
+            "timeSec": "2023-08-22 15:48:07",
+            "hostSrc": "vpn1-app1",
+            "procSrc": "sca_contrl_prox",
+            "hostDst": "unkown",
+            "procDst": "sca_remote_ctrl",
+            "result": 0,
+            "phase": 3
+        }
+    ]
+}

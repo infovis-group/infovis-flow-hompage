@@ -142,16 +142,13 @@ const dealLevelData = (level, levelType) => {
 };
 
 /**
- * @description: 获取主机信息数据接口
+ * @description: 获取告警浏览表格数据
  * @return {*}
  */
 let tableData = ref([]);
 const getTableData = () => {
   ajaxCall("getNetVisWarnInfos", {
     type: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
     params: {
       startTime: formData.datetime ? formData.datetime[0] + " 00:00:00" : "",
       endTime: formData.datetime ? formData.datetime[1] + " 23:59:59" : "",
