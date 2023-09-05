@@ -57,20 +57,25 @@
 
     <div class="tmc__bottom">
       <div class="tmc__bottom__host">
-        <div class="tmc__bottom__host-box">
+        <div class="tmc__bottom__host-box" v-if="isShowLine">
           <div class="host-wrapper">
-            <div>主机A</div>
-            <!-- <img :src="require('../../../common/image/typeical-monitoring/bg1.png')" alt="" /> -->
-            <div>程序A</div>
+            <div>{{ leftHost }}</div>
+            <div>{{ leftProc }}</div>
           </div>
-          <div class="line-wrapper">
-            <div class="line"></div>
-            <div class="line2"></div>
-          </div>
+          <el-tooltip
+            class="item"
+            effect="dark"
+            placement="top"
+          >
+            <template #content> <div v-html="content"></div> </template>
+            <div class="line-wrapper">
+              <div class="line"></div>
+              <div class="line2"></div>
+            </div>
+          </el-tooltip>
           <div class="host-wrapper">
-            <div>主机B</div>
-            <!-- <img :src="imgSrc" alt="" /> -->
-            <div>程序B</div>
+            <div>{{ rightHost }}</div>
+            <div>{{ rightProc }}</div>
           </div>
         </div>
       </div>
@@ -115,8 +120,13 @@ const formData = reactive({
   datetime: "",
   host: "",
 });
+const leftHost = ref(),
+  leftProc = ref(),
+  rightHost = ref(),
+  rightProc = ref(); //线两边显示的主机和程序
+const isShowLine = ref(false); //是否现在连线关系
+const content = ref(); //连线显示内容
 
-// const imgSrc=ref(require("../../../common/image/typeical-monitoring/bg1.png"))
 /**
  * @description: 获取主机信息数据接口
  * @return {*}
@@ -178,11 +188,36 @@ const getBottomTableData = (row) => {
         item.ctlType = row.ctlType;
         item.target_value = row.target_value;
         item.status = row.status;
+        item.event = row.event;
+        item.result = row.result;
       });
       botTableData.value = data;
+      if (botTableData.value.length) {
+        let firstData = botTableData.value[0];
+        console.log(firstData);
+        isShowLine.value = true;
+        leftHost.value = firstData.hostSrc;
+        leftProc.value = firstData.procSrc;
+        rightHost.value = firstData.hostDst;
+        rightProc.value = firstData.procDst;
+        content.value = `
+        <span style="color:#27DCF4;">时间：</span>${firstData.timeSec} 
+        <span style="color:#27DCF4;">遥控类型：</span>${dealCtlTypeData(
+          firstData.ctlType
+        )} 
+        <span style="color:#27DCF4;">事件：</span>${dealEventData(
+          firstData.event
+        )} 
+        <span style="color:#27DCF4;">结果：</span>${
+          firstData.result == 0 ? "成功" : "失败"
+        } `;
+      } else {
+        isShowLine.value = false;
+      }
     },
   });
 };
+
 /**
  * 处理遥控类型数据
  */
@@ -234,6 +269,30 @@ const dealStatusData = (status) => {
   }
   return statusName;
 };
+/**
+ * 处理事件数据
+ */
+const dealEventData = (event) => {
+  var eventName;
+  switch (event) {
+    case 1:
+      eventName = "预置";
+      break;
+    case 2:
+      eventName = "执行";
+      break;
+    case 3:
+      eventName = "撤销";
+      break;
+    case 4:
+      eventName = "直控";
+      break;
+    case 101:
+      eventName = "控制校核（操作互斥、挂牌闭锁）";
+      break;
+  }
+  return eventName;
+};
 
 onMounted(() => {
   getNetVisHostInfos();
@@ -248,6 +307,8 @@ onMounted(() => {
  */
 const query_btn = () => {
   getTopTableData();
+  isShowLine.value = false;
+  botTableData.value = [];
 };
 </script>
 
@@ -296,12 +357,27 @@ const query_btn = () => {
         display: flex;
         margin: auto;
         .host-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           width: 8.75rem;
-          height: 100%;
+          height: 97%;
+          color: #d9faff;
+          font-weight: bold;
           text-align: center;
+          background: url(../../../common/image/typeical-monitoring/bg1.png)
+            no-repeat center center;
+          margin: auto;
+          & > div {
+            height: 2rem;
+            line-height: 2rem;
+            background: url(../../../common/image/typeical-monitoring/textBg.png)
+              no-repeat center center;
+            background-size: 100% 100%;
+          }
         }
         .line-wrapper {
-          width: calc(100% - 21.5rem);
+          width: calc(100% - 17.5rem);
           margin: auto;
           .line {
             width: calc(100% - 10px);
@@ -348,5 +424,13 @@ const query_btn = () => {
       // background: blue;
     }
   }
+}
+</style>
+<style>
+.el-popper.is-dark {
+  background: #083a60;
+}
+.el-popper.is-dark .el-popper__arrow::before {
+  background: #083a60;
 }
 </style>
