@@ -1,4 +1,9 @@
-import { confignize, getUrlParamsFromUrl, loadConf, ajaxCall } from './common';
+import {
+    confignize,
+    getUrlParamsFromUrl,
+    loadConf,
+    ajaxCall
+} from './common';
 import _ from 'lodash';
 
 export const confPath = '../../common/conf/';
@@ -15,27 +20,30 @@ export const urlConfig = {
         url: '',
         mockData: ''
     },
-    getNetVisHostInfos:{
+    getNetVisHostInfos: {
         url: urlPath + '/v1/ccs/op/traffic/getNetVisHostInfos',
         mockData: 'netVisHostMockData.json'
     },
-    getRtNetNcInfos:{
+    getRtNetNcInfos: {
         url: urlPath + '/v1/ccs/op/host/getRtNetNcInfos',
         mockData: 'getRtNetNcInfos.json'
     },
-    getNetVisWarnInfos:{
-        url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos',//告警浏览表格数据
+    addNetVisHostInfos: {
+        url: urlPath + '/v1/ccs/op/host/addNetVisHostInfos',
+        mockData: 'addNetVisHostInfos.json'
+    },
+    getNetVisWarnInfos: {
+        url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos', //告警浏览表格数据
         mockData: 'getNetVisWarnInfos.json'
     },
-    getCtrlSessionInfos:{
-        url: urlPath + '/v1/ccs/op/ctrl/getCtrlSessionInfos',//典型遥控上面表格数据
+    getCtrlSessionInfos: {
+        url: urlPath + '/v1/ccs/op/ctrl/getCtrlSessionInfos', //典型遥控上面表格数据
         mockData: 'getCtrlSessionInfos.json'
     },
-    getCtrlDetailStepInfos:{
-        url: urlPath + '/v1/ccs/op/ctrl/getCtrlDetailStepInfos',//典型遥控下面表格数据
+    getCtrlDetailStepInfos: {
+        url: urlPath + '/v1/ccs/op/ctrl/getCtrlDetailStepInfos', //典型遥控下面表格数据
         mockData: 'getCtrlDetailStepInfos.json'
     }
-    
 };
 
 let externalUrls;
