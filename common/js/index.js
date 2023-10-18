@@ -1,6 +1,19 @@
 var pieEchart
 var pieTxEchart
 var pieEchartid
+var type=1
+$('.tdbtn2').click(function(){
+  type=$('.tdbtn2').attr('data-type')
+  getMessData()
+})
+$('.tdbtn').click(function(){
+  type=$('.tdbtn').attr('data-type')
+  getMessData()
+})
+$('.tdbtn1').click(function(){
+  type=$('.tdbtn1').attr('data-type')
+  getMessData()
+})
 // 服务接口划分
 getFwData()
 // 通信协议划分
@@ -42,13 +55,15 @@ function InitWarnTable(){
             warnlevel:'严重',
         },
     ]
+    var height=$('.rightbox li').height()-30
+    console.log(height)
     //第一个实例
 	layui.table.render({
 		elem: '#myTable',
 		// toolbar: '#toolbarDemo',
-		// height: 'full-100',//height: 'full-110' 其中110 为距离底部的距离，110px
+		height: height,//height: 'full-110' 其中110 为距离底部的距离，110px
         data:data,
-		height:'220',
+		// height:'full-200',
 		cols: [
 			[ //表头
 			 {
@@ -82,19 +97,31 @@ function InitWarnTable(){
 
 // 服务接口划分
 function getFwData() {
-    setFwData()
+  HttpUtil.get({
+    url:'/ccs/op/traffic/getServerTopData',
+    params:{
+      startTime:'2023-07-21 00:00:00',
+      endTime:'2023-07-21 23:59:59'
+    },
+    onSuccess:function(res){
+      setFwData(res)
+    }
+  })
+    
   }
-  function setFwData() {
+  function setFwData(res) {
     if (!pieEchart) {
       pieEchart = echarts.init(document.getElementById('pieid'));
     }
-    pieEchart.setOption(setEcharts(), true);
+    pieEchart.setOption(setEcharts(res), true);
   }
 
-  function setEcharts() {
+  function setEcharts(res) {
     /* 数据 */
-    let nameList = ["主机A", "主机B", "主机C", "主机D"];
-    let valueList = [290, 180, 230, 100];
+    let nameList = ['scader','server'];
+    
+    let valueList = [res.data.scader[0].detailVolume,res.data.server[0].detailVolume];
+    console.log('valueList',valueList)
     var total = 0;
   
     /* 整合 */
@@ -108,7 +135,7 @@ function getFwData() {
       })
     })
     var lefts = ["68%", "68%", "5%", "5%"]
-    var tops = ["30%", "60%", "60%", "30%"]
+    var tops = ["20%", "50%", "50%", "20%"]
     let legendData = []
     for (let i = 0; i < data.length; i++) {
       let bfb = parseInt((data[i].value / total) * 100) + "%";
@@ -541,22 +568,41 @@ function getTXlineEcharts(){
 }
 // 消息接口划分
 function getMessData(){
-  setMessData()
+  HttpUtil.get({
+    url:'/ccs/op/traffic/getInformationLineData',
+    params:{
+      startTime:'2023-07-21 00:00:00',
+      endTime:'2023-07-25 23:59:59',
+      type:type
+    },
+    onSuccess:function(res){
+      if(type==3){
+        setMessData(res.data.src_code_11)
+      }else{
+        setMessData(res.data[0])
+      }
+     
+    }
+  })
+  
 }
-function setMessData(){
+function setMessData(resdata){
   if (!pieEchartid) {
     pieEchartid = echarts.init(document.getElementById('pieEchartid'));
   }
-  pieEchartid.setOption(getMessEcharts(), true);
+  pieEchartid.setOption(getMessEcharts(resdata), true);
 }
-function getMessEcharts(){
+function getMessEcharts(resdata){
     /* 数据 */
-    let nameList = ["主机A", "主机B", "主机C", "主机D"];
-    let valueList = [290, 180, 230, 100];
+    let nameList = [];
+    let valueList = [];
     var total = 0;
-  
+    resdata.forEach(function(item){
+      nameList.push(item.serv)
+      valueList.push(item.detailVolume)
+    })
     /* 整合 */
-    let colorList = ["#159fd9", "#53dff1", "#20ca9c", "#c47930"];
+    let colorList = ["#159fd9", "#53dff1", "#20ca9c", "#c47930","#BEEDF7"];
     let data = [];
     nameList.map((item, index) => {
       total += valueList[index]
@@ -565,8 +611,8 @@ function getMessEcharts(){
         value: valueList[index]
       })
     })
-    var lefts = ["60%", "60%", "60%", "60%"]
-    var tops = ["25%", "70%", "55%", "40%"]
+    var lefts = ["58%", "58%", "58%", "58%","58%"]
+    var tops = ["25%", "70%", "55%", "40%","12%"]
     let legendData = []
     for (let i = 0; i < data.length; i++) {
       let bfb = parseInt((data[i].value / total) * 100) + "%";

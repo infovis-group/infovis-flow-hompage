@@ -4,6 +4,7 @@ var barEchart
 var pieEchart
 var pieEchart1
 var pieEchart2
+var type
 // 通信协议
 getTXlineData()
 // 在线会话数
@@ -59,8 +60,8 @@ function getTXlineEcharts(timedata, namedata, fwdata, xxdata, qtdata) {
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '3%',
-      top: '15%',
+      bottom: '8%',
+      top: '12%',
       containLabel: true
     },
     xAxis: [
@@ -218,8 +219,8 @@ function getOnlineEcharts(timedata, fwdata) {
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '3%',
-      top: '15%',
+      bottom: '8%',
+      top: '12%',
       containLabel: true
     },
     xAxis: [
@@ -323,8 +324,8 @@ function getFwLineEcharts(timedata, fwdata) {
     grid: {
       left: '3%',
       right: '4%',
-      bottom: '3%',
-      top: '15%',
+      bottom: '8%',
+      top: '12%',
       containLabel: true
     },
     xAxis: [
@@ -406,7 +407,19 @@ function getFwLineEcharts(timedata, fwdata) {
 }
 // 消息总线-通道
 function getZxData() {
-  setZxData()
+  HttpUtil.get({
+    url:'/ccs/op/traffic/getInformationLineData',
+    params:{
+      startTime:'2023-07-21 00:00:00',
+      endTime:'2023-07-25 23:59:59',
+      type:1
+    },
+    onSuccess:function(res){
+      type=1
+      setZxData(res)
+    }
+  })
+ 
 }
 function setZxData() {
   if (!pieEchart) {
@@ -417,7 +430,18 @@ function setZxData() {
 
 // 主机流量
 function getZJData(){
-  setZJData()
+  HttpUtil.get({
+    url:'/ccs/op/traffic/getInformationLineData',
+    params:{
+      startTime:'2023-07-21 00:00:00',
+      endTime:'2023-07-25 23:59:59',
+      type:2
+    },
+    onSuccess:function(res){
+      type=2
+      setZJData(res)
+    }
+  })
 }
 function setZJData(){
   if (!pieEchart1) {
@@ -428,7 +452,18 @@ function setZJData(){
 
 // 消息总线-事件号
 function getEventData(){
-  setEventData()
+  HttpUtil.get({
+    url:'/ccs/op/traffic/getInformationLineData',
+    params:{
+      startTime:'2023-07-21 00:00:00',
+      endTime:'2023-07-25 23:59:59',
+      type:3
+    },
+    onSuccess:function(res){
+      type=3
+      setEventData(res)
+    }
+  })
 }
 function setEventData(){
   if (!pieEchart2) {
