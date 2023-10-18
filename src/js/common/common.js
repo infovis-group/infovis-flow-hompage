@@ -247,7 +247,7 @@ export function ajaxCall(
             if (result != null) {
                 _cause = 'cause' in result ? result.cause : result.message;
                 if (('code' in result || 'state' in result) && 'data' in result) {
-                    debug('Loading <' + uniqId + '> data state: ' + result.state);
+                    // debug('Loading <' + uniqId + '> data state: ' + result.state);
                     let _code = 'state' in result ? result.state : result.code;
                     _code = parseInt(_code);
                     if (_code > -1) {

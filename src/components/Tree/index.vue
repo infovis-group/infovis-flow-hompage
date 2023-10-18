@@ -1,6 +1,6 @@
 <template>
     <div class="TreeCom">
-        <h3 class="title">{{ titleName }}</h3>
+        <h3 class="title">主机信息</h3>
         <div class="tree-box">
             <el-tree ref="treeRef" :data="visHostData" :props="treeProps" node-key="id" highlight-current default-expand-all
                 :expand-on-click-node="false" empty-text="暂无数据" @node-click="click_tree">
@@ -47,30 +47,10 @@
 </template>
 
 <script setup>
-import { ref, reactive, defineProps, toRefs, defineEmits, nextTick, inject } from "vue";
+import { ref, reactive, defineProps, toRefs, defineEmits, nextTick, onMounted } from "vue";
 import { ElTree, ElMessage } from "element-plus";
 import { ajaxCall } from '../../js/common/common';
 import { urlPath } from '../../js/common/globalVar';
-
-
-/**
- * @description: 接收父组件传来的参数
- * @return {*}
- */
-const { titleName, visHostData, getNetVisHostInfos } = defineProps({
-    titleName: {
-        type: String,
-        default: "",
-    },
-    visHostData: {
-        type: Array,
-        default: () => [],
-    },
-    getNetVisHostInfos: {
-        type: Function,
-        default: () => { },
-    },
-});
 
 // 树节点和树节点数据的定义
 const treeRef = ref();
@@ -78,6 +58,29 @@ const treeProps = {
     label: "ncName",
     children: "rtConNetNcInfoList",
 };
+
+/**
+ * @description: 获取主机信息数据接口
+ * @return {*}
+ */
+let visHostData = ref([])
+const getNetVisHostInfos = () => {
+    ajaxCall('getNetVisHostInfos', {
+        type: 'post',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        params: JSON.stringify({}),
+        success(data) {
+            data.forEach((item) => {
+                item.ncName = item.hostName
+            })
+
+            visHostData.value = data
+        },
+    });
+}
+
 
 // 控制弹窗打开关闭
 const dialogFormVisible = ref(false); // dialog isShow
@@ -87,7 +90,7 @@ const dialogType = ref("新增");      // dialog-type：  新增 or 修改
 const formData = ref({
     hostName: "",
     note: "",
-    listType: 1
+    listType: "1"
 });
 // 验证规则
 const rules = reactive({
@@ -108,13 +111,19 @@ const rules = reactive({
  * @return {*}
  */
 const isShowDelBtn = ref(false);    // 是否显示删除按钮，是否可被删除
-const checkData = ref(null),        // 当前点击的树节点数据
-    level = ref(null);                  // 当前点击树节点的级别，第一级可被修改和删除
+const checkData = ref(null);       // 当前点击的树节点数据
+
+const emit = defineEmits(['getTreeCheckData'])
+
 const click_tree = (data, node) => {
+    console.log('data=================' , data);
     checkData.value = data
-    level.value = node.level
+    checkData.value.level = node.level
     // 主机类型为交换机 可以删除
-    isShowDelBtn.value = data?.hostType == 1 && node.level == 1 ? true : false
+    isShowDelBtn.value = data?.hostType == 2 && node.level == 1 ? true : false
+    // emit('update:dialogFormVisible', true)
+    emit('getTreeCheckData', checkData.value)
+
 };
 
 /**
@@ -127,10 +136,6 @@ const add_btn = () => {
     nextTick(() => {
         dialogForm.value.resetFields();
     });
-
-    // const emit = defineEmits(['update:dialogFormVisible','dialogType'])
-    // emit('update:dialogFormVisible', true)
-    // emit('sendDialogType', '新增')
 };
 
 /**
@@ -138,7 +143,7 @@ const add_btn = () => {
  * @return {*}
  */
 const edit_btn = () => {
-    if (level?.value !== 1) {
+    if (checkData.value?.level !== 1) {
         ElMessage({
             message: '请选择要修改的主机信息！',
             type: 'warning',
@@ -152,7 +157,7 @@ const edit_btn = () => {
         formData.value = {
             hostName: checkData.value.hostName,
             note: checkData.value.note,
-            listType: checkData.value.listType,
+            listType: String(checkData.value.listType),
         };
     });
 };
@@ -226,6 +231,18 @@ const delete_btn = () => {
     });
 
 };
+
+
+onMounted(() => {
+    getNetVisHostInfos()
+})
+
+
+defineExpose({
+    getNetVisHostInfos,
+    visHostData,
+    // checkData
+})
 
 </script>
 

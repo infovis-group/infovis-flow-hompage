@@ -1,0 +1,17 @@
+diff a/src/css/elePlus.scss b/src/css/elePlus.scss	(rejected hunks)
+@@ -4,11 +4,14 @@
+ 
+ .el-input__wrapper,
+ .el-textarea__inner,
+-.el-range-editor.el-input__wrapper {
++.el-range-editor.el-input__wrapper,
++.el-input.is-disabled .el-input__wrapper,
++.el-textarea.is-disabled .el-textarea__inner {
+     background-color: transparent;
+     box-shadow: 0 0 0 1px #1f6c9b;
+     outline: none;
+     color: #fff;
++    --el-disabled-text-color:#fff;
+ }
+ 
+ .el-date-editor {

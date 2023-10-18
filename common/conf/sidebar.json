@@ -6,6 +6,8 @@
                 "topology-display",
                 "network-resource-discovery",
                 "define-trusted-hosts",
+                "define-trusted-device",
+                "define-trusted-port",
                 "universal-traffic-bus-monitoring",
                 "typical-remote-control",
                 "alarm-browsing"

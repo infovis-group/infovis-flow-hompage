@@ -9,7 +9,7 @@ import _ from 'lodash';
 export const confPath = '../../common/conf/';
 export const mockPath = `../../common/mockData/`;
 export const urlPath =
-    process.env.NODE_ENV === 'development' ? `http://192.168.201.113:18090` : 'logsApi'; //后台包位置
+    process.env.NODE_ENV === 'development' ? `http://192.168.201.18:18090` : 'logsApi'; //后台包位置
 export const authPath =
     process.env.NODE_ENV === 'development' ? `http://192.168.201.201:8878` : 'commonApi'; //后台包位置
 
@@ -31,6 +31,10 @@ export const urlConfig = {
     addNetVisHostInfos: {
         url: urlPath + '/v1/ccs/op/host/addNetVisHostInfos',
         mockData: 'addNetVisHostInfos.json'
+    },
+    joinRtNetNcHostInfo: {
+        url: urlPath + '/v1/ccs/op/host/joinRtNetNcHostInfo',
+        mockData: 'joinRtNetNcHostInfo.json'
     },
     getNetVisWarnInfos: {
         url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos', //告警浏览表格数据
