@@ -6,7 +6,7 @@
 
 	// 静态常量
 	window.Constants = {
-		api: _getApiPrefix() + "/v",
+		api: _getApiPrefix() + "/v1",
 		apiD: _getApiPrefixD(),
 		isDebug: false,
 	};
@@ -15,7 +15,7 @@
 		if (active === 'dev') {
 			// return 'http://192.168.201.137:18090';
 			// return 'http://192.168.201.201:18090';
-			return 'http://192.168.201.201:18082';
+			return 'http://192.168.201.104:18090';
 
 		} else if (active === 'test') {
 			return window.location.protocol + '//' + window.location.host;

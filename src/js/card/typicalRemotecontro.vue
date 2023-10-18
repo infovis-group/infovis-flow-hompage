@@ -62,11 +62,7 @@
             <div>{{ leftHost }}</div>
             <div>{{ leftProc }}</div>
           </div>
-          <el-tooltip
-            class="item"
-            effect="dark"
-            placement="top"
-          >
+          <el-tooltip class="item" effect="dark" placement="top">
             <template #content> <div v-html="content"></div> </template>
             <div class="line-wrapper">
               <div class="line"></div>
@@ -111,13 +107,14 @@
 <script setup>
 import { reactive, ref, onMounted } from "vue";
 import { ajaxCall } from "../common/common.js";
+import dayjs from 'dayjs';
 
 /**
  * @description: form表单数据
  * @return {*}
  */
 const formData = reactive({
-  datetime: "",
+  datetime: [dayjs().format('YYYY-MM-DD'),dayjs().format('YYYY-MM-DD')],
   host: "",
 });
 const leftHost = ref(),

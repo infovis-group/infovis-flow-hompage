@@ -58,8 +58,10 @@ main {
 .liheader {
     margin-left: 0.32rem;
     color: #fff;
-    font-size: 0.1rem;
-    line-height: 0.22rem;
+    font-size: 0.08rem;
+    margin-top: 0.01rem;
+    height: 0.2rem;
+    line-height: 0.18rem;
 }
 .dw {
     position: absolute;
@@ -73,4 +75,16 @@ main {
     height: 80%;
     margin: 0.2rem auto;
     /* background: rebeccapurple; */
+}
+@media screen and (min-width: 1500px) {
+    .liheader {
+        font-size: 0.06rem;
+        line-height: 0.15rem;
+    }
+}
+@media screen and (min-width: 1900px) {
+    .liheader {
+        font-size: 0.08rem;
+        line-height: 0.2rem;
+    }
 }

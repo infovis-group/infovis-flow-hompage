@@ -80,9 +80,11 @@ main {
 }
 
 .liheader {
-    margin-left: 45px;
+    margin-left: 0.32rem;
     color: #fff;
-    font-size: 0.1rem;
+    font-size: 0.08rem;
+    /* margin-top: 0.01rem; */
+    /* height: 0.2rem; */
     line-height: 0.22rem;
 }
 
@@ -129,7 +131,7 @@ main {
     font-size: 0.03rem;
     color: rgba(216, 247, 255, 0.5);
     display: block;
-    margin-top: 0.1rem;
+    margin-top: 0.05rem;
 }
 
 .zjfont2 {
@@ -141,7 +143,7 @@ main {
 .slmain {
     width: 90%;
     height: 82%;
-    margin: 0.04rem auto 0;
+    margin: 0.02rem auto 0;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -168,7 +170,7 @@ main {
 
 .sltitle li {
     width: 100%;
-    height: 0.2rem;
+    height: 18%;
     background: url(../../../common/image/home/box_3-1.png) no-repeat center center;
     background-size: 100% 100%;
     display: flex;
@@ -266,19 +268,20 @@ main {
 .slfont{
     font-size: 0.07rem;
     color: #fff;
-    line-height: 0.2rem;
+    line-height: 0.18rem;
     margin-left: 0.05rem;
+    /* vertical-align: middle; */
 }
 .slnum{
     font-size: 0.1rem;
     color: #5be3fb;
-    line-height: 0.2rem;
+    line-height: 0.18rem;
     margin-left: 0.2rem;
 }
 .sldw{
     font-size: 0.06rem;
     color: #bef2ff;
-    line-height: 0.2rem;
+    line-height: 0.18rem;
 }
 .tableid{
     width: 90%;
@@ -377,40 +380,62 @@ main {
 }
 .tdbtn{
     position: absolute;
-    width: 126px;
-    height: 38px;
+    width: 0.56rem;
+    height: 0.16rem;
     left: 0.1rem;
-    top: 0.8rem;
+    top: 45%;
     background: url(../../../common/image/home/btn_2.png) no-repeat center center;
     background-size: 100% 100%;
     text-align: center;
-    line-height: 0.2rem;
-    font-size: 0.08rem;
+    line-height: 0.16rem;
+    font-size: 0.06rem;
     color: #fff;
+    cursor: pointer;
 }
 .tdbtn1{
     position: absolute;
-    width: 126px;
-    height: 38px;
+    width: 0.56rem;
+    height: 0.16rem;
     left: 0.1rem;
-    top: 1.1rem;
+    top: 65%;
     background: url(../../../common/image/home/btn_2.png) no-repeat center center;
     background-size: 100% 100%;
     text-align: center;
-    line-height: 0.2rem;
-    font-size: 0.08rem;
+    line-height: 0.16rem;
+    font-size: 0.06rem;
     color: #fff;
+    cursor: pointer;
 }
 .tdbtn2{
     position: absolute;
-    width: 126px;
-    height: 38px;
+    width: 0.56rem;
+    height: 0.16rem;
     left: 0.15rem;
-    top: 0.48rem;
+    top: 25%;
     background: url(../../../common/image/home/btn_3.png) no-repeat center center;
     background-size: 105% 150%;
     text-align: center;
-    line-height: 0.24rem;
-    font-size: 0.08rem;
+    line-height: 0.2rem;
+    font-size: 0.06rem;
     color: #fff;
+    cursor: pointer;
 }
+@media screen and (min-width: 1500px) {
+    .liheader {
+        font-size: 0.06rem;
+        line-height: 0.15rem;
+    }
+}
+@media screen and (min-width: 1900px) {
+    .liheader {
+        font-size: 0.08rem;
+        line-height: 0.2rem;
+    }
+}
+/* .layui-table-body tbody{
+    overflow-y: scroll;
+    height: calc(100% - 1rem) !important;
+} */
+/* .layui-table-body{
+    height: 0.6rem !important;
+} */
