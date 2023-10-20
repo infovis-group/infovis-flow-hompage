@@ -36,6 +36,22 @@ export const urlConfig = {
         url: urlPath + '/v1/ccs/op/host/joinRtNetNcHostInfo',
         mockData: 'joinRtNetNcHostInfo.json'
     },
+    addNetVisNcInfos: {
+        url: urlPath + '/v1/ccs/op/host/addNetVisNcInfos', //设备类型== 定义黑白名单
+        mockData: 'addNetVisNcInfos.json'
+    },
+    getRtNetPortInfos: {
+        url: urlPath + '/v1/ccs/op/host/getRtNetPortInfos', //获取可信端口数据
+        mockData: 'getRtNetPortInfos.json'
+    },
+    definePortInfo: {
+        url: urlPath + '/v1/ccs/op/host/definePortInfo', //定义可信端口，获取端口数据
+        mockData: 'definePortInfo.json'
+    },
+    delRtConNetVisPortInfo: {
+        url: urlPath + '/v1/ccs/op/host/delRtConNetVisPortInfo', //删除端口数据
+        mockData: 'delRtConNetVisPortInfo.json'
+    },
     getNetVisWarnInfos: {
         url: urlPath + '/v1/ccs/op/traffic/getNetVisWarnInfos', //告警浏览表格数据
         mockData: 'getNetVisWarnInfos.json'

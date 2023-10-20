@@ -1,7 +1,7 @@
 <template>
 	<div class="defineCrediblehost">
 		<div class="dcb_left">
-			<left-tree ref="tree" @getTreeCheckData="getTreeCheckData"></left-tree>
+			<left-tree ref="treeDom" @getTreeCheckData="getTreeCheckData"></left-tree>
 		</div>
 
 		<!-- 点击一级列表显示的主机数据 -->
@@ -20,6 +20,7 @@
 					</el-form-item>
 					<el-form-item label="黑白名单：">
 						<el-select v-model="hostFormData.listType" disabled>
+							<el-option label="未定义" value="0" />
 							<el-option label="白名单" value="1" />
 							<el-option label="黑名单" value="2" />
 						</el-select>
@@ -42,7 +43,7 @@
 
 		<!-- 点击二级列表显示的设备和端口数据 -->
 		<div class="dcb_right dcb_right2" v-if="level === 2">
-			<div>
+			<div class="device-box">
 				<h3 class="title">可信资源配置(设备)</h3>
 				<div class="form-box">
 					<el-form :model="deviceFormData" label-width="90px">
@@ -57,6 +58,7 @@
 						</el-form-item>
 						<el-form-item label="黑白名单：">
 							<el-select v-model="deviceFormData.listType" disabled>
+								<el-option label="未定义" value="0" />
 								<el-option label="白名单" value="1" />
 								<el-option label="黑名单" value="2" />
 							</el-select>
@@ -91,10 +93,20 @@
 					@current-change="handleCurrentChange">
 					<el-table-column type="index" width="55" />
 					<el-table-column prop="port" label="端口" align="center" />
-					<el-table-column
-						prop="listTypeName"
-						label="黑白名单"
-						align="center" />
+					<el-table-column label="黑白名单">
+						<template #default="scope">
+							<div>
+								{{
+									scope.row.listType == 0
+										? "未定义"
+										: scope.row.listType == 1
+										? "白名单"
+										: "黑名单"
+								}}
+							</div>
+						</template>
+					</el-table-column>
+
 					<el-table-column prop="note" label="描述" align="center" />
 				</el-table>
 
@@ -116,6 +128,7 @@
 		</div>
 	</div>
 
+	<!-- 定义黑白名单弹窗 -->
 	<el-dialog
 		v-model.sync="defineListDialog"
 		width="40%"
@@ -127,6 +140,7 @@
 				<el-select
 					v-model="defineListFromData.listType"
 					placeholder="请选择黑白名单">
+					<el-option label="未定义" value="0" />
 					<el-option label="白名单" value="1" />
 					<el-option label="黑名单" value="2" />
 				</el-select>
@@ -141,13 +155,61 @@
 			</span>
 		</template>
 	</el-dialog>
+
+	<!-- 新增修改端口弹窗 -->
+	<el-dialog
+		v-model.sync="definePortDialog"
+		width="40%"
+		top="20vh"
+		title="定义黑白名单"
+		ref="dialogForm"
+		draggable>
+		<el-form
+			:model="definePortForm"
+			label-width="110px"
+			ref="dialogForm"
+			:rules="rules">
+			<el-form-item label="网卡名称：" prop="ncName">
+				<el-input v-model="definePortForm.ncName" disabled="" />
+			</el-form-item>
+
+			<el-form-item label="端口：" prop="port">
+				<el-input v-model="definePortForm.port" placeholder="请输入端口" />
+			</el-form-item>
+
+			<el-form-item label="黑白名单：" prop="listType">
+				<el-select
+					v-model="definePortForm.listType"
+					placeholder="请选择黑白名单">
+					<el-option label="未定义" value="0" />
+					<el-option label="白名单" value="1" />
+					<el-option label="黑名单" value="2" />
+				</el-select>
+			</el-form-item>
+
+			<el-form-item label="描述：" prop="note">
+				<el-input
+					v-model="definePortForm.note"
+					placeholder="请输入描述信息，不能超过32个字符" />
+			</el-form-item>
+		</el-form>
+		<template #footer>
+			<span class="dialog-footer">
+				<el-button @click="definePortConfirm">确 定</el-button>
+				<el-button type="primary" @click="definePortDialog = false">
+					取 消
+				</el-button>
+			</span>
+		</template>
+	</el-dialog>
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from "vue";
+import { ref, reactive, onMounted, nextTick } from "vue";
 import leftTree from "../../components/Tree/index.vue";
 import { ajaxCall } from "../common/common.js";
 import { ElMessage } from "element-plus";
+import { urlPath } from "../../js/common/globalVar";
 
 const tree = ref(null);
 /**
@@ -162,69 +224,274 @@ const hostFormData = ref("");
  */
 const deviceFormData = ref("");
 
+// 定义黑白名单控制弹窗打开关闭
 const defineListDialog = ref(false);
-
+// 定义黑白名单弹窗数据，用于回显
 const defineListFromData = ref("");
 
 const level = ref(""); // 点击的几级列表
 const getTreeCheckData = val => {
-	// console.log(val);
-	val.hostType =val.hostType && typeof val.hostType === "number" ? String(val.hostType) : "";
-	val.listType =val.listType && typeof val.listType === "number" ? String(val.listType) : "";
+	// listType和hostType后端给的是Number类型，需要转换成String回显下拉框
+	val.hostType = String(val.hostType);
+	val.listType = String(val.listType);
 
 	level.value = val.level;
 
 	if (val.level === 1) {
+		//点击主机
 		hostFormData.value = val;
+		console.log(val);
 	} else {
+		// 点击网卡
 		deviceFormData.value = val;
+		getRtNetPortInfos();
 	}
 };
 
+/**
+ * @description: 主机的定义黑白名单
+ * @return {*}
+ */
 const host_defineBtn = () => {
+	defineListDialog.value = true;
 	defineListFromData.value = hostFormData.value;
-	defineListDialog.value = true;
 };
 
+/**
+ * @description: 设备的定义黑白名单
+ * @return {*}
+ */
 const device_defineBtn = () => {
-	defineListFromData.value = deviceFormData.value;
 	defineListDialog.value = true;
+	defineListFromData.value = deviceFormData.value;
 };
 
-const dialogFromConfirm = () => {};
+/**
+ * @description: 确认定义黑白名单 ，level=1是定义主机，2是定义设备
+ * @return {*}
+ */
+const dialogFromConfirm = () => {
+	if (level.value === 1) {
+		addOrEditNetVisHostInfos();
+		return;
+	}
 
-const tableData = ref([
-	{
-		port: "8080",
-		listTypeName: "白名单",
-		note: "备注信息112121",
-	},
-	{
-		port: "8080",
-		listTypeName: "白名单",
-		note: "备注信息112121",
-	},
-	{
-		port: "8080",
-		listTypeName: "白名单",
-		note: "备注信息112121",
-	},
-]);
-
-const handleCurrentChange = () => {
-	console.log(232321);
+	addNetVisNcInfos();
 };
 
+/**
+ * @description: 修改主机黑白名单接口
+ * @return {*}
+ */
+
+const treeDom = ref(null);
+const addOrEditNetVisHostInfos = async () => {
+	if (!defineListFromData.value) return;
+	ajaxCall("addNetVisHostInfos", {
+		type: "post",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		params: JSON.stringify({
+			id: defineListFromData.value.id,
+			listType: defineListFromData.value.listType,
+			hostName: defineListFromData.value.hostName,
+			note: defineListFromData.value.note,
+		}),
+		success(data) {
+			defineListDialog.value = false;
+			ElMessage({
+				message: `定义黑白名单成功！`,
+				type: "success",
+			});
+			treeDom.value.getNetVisHostInfos();
+		},
+	});
+};
+
+/**
+ * @description: 修改设备黑白名单接口
+ * @return {*}
+ */
+const addNetVisNcInfos = async () => {
+	if (!defineListFromData.value) return;
+	ajaxCall("addNetVisNcInfos", {
+		type: "post",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		params: JSON.stringify(defineListFromData.value),
+		success(data) {
+			defineListDialog.value = false;
+			ElMessage({
+				message: `定义黑白名单成功！`,
+				type: "success",
+			});
+			treeDom.value.getNetVisHostInfos();
+		},
+	});
+};
+
+/**
+ * @description: 获取端口表格数据
+ * @return {*}
+ */
+const tableData = ref([]);
+const getRtNetPortInfos = () => {
+	ajaxCall("getRtNetPortInfos", {
+		type: "post",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		params: JSON.stringify({
+			nc: deviceFormData.value.id,
+		}),
+		success(data) {
+			tableData.value = data;
+		},
+	});
+};
+
+/**
+ * @description: 当前点击的表格行数据，用于编辑和删除
+ * @return {*}
+ */
+let currentPort;
+const handleCurrentChange = data => {
+	currentPort = data;
+	console.log(data);
+};
+
+const definePortDialog = ref(false);
+const dialogForm = ref(null); // dialog-el
+
+const definePortForm = ref({
+	port: "",
+	listType: "",
+	note: "",
+});
+
+// 验证规则
+const rules = reactive({
+	port: [
+		{
+			required: true,
+			message: "请输入端口名称",
+			trigger: "blur",
+		},
+	],
+	listType: [
+		{
+			required: true,
+			message: "请选择黑白名单",
+			trigger: "blur",
+		},
+	],
+	note: [
+		{
+			required: true,
+			message: "请输入描述信息",
+			trigger: "blur",
+		},
+		{ min: 1, max: 31, message: "长度最大支持31个字符", trigger: "blur" },
+	],
+});
+
+/**
+ * @description: 新增端口数据
+ * @return {*}
+ */
 const add_btn = () => {
-	console.log(1111);
+	console.log(definePortForm);
+	definePortDialog.value = true;
+	nextTick(() => {
+		dialogForm.value.resetFields();
+		definePortForm.value.ncName = deviceFormData.value.ncName;
+		definePortForm.value.nc = deviceFormData.value.id;
+	});
 };
 
+/**
+ * @description: 修改端口数据
+ * @return {*}
+ */
 const edit_btn = () => {
-	console.log(1111);
+	console.log(currentPort);
+	if (!currentPort) {
+		ElMessage({
+			message: `请选择要修改的端口信息！`,
+			type: "warning",
+		});
+		return;
+	}
+	definePortForm.value = currentPort;
+	// listType后端给的是Number类型，需要转换成String回显下拉框
+	definePortForm.value.listType = String(definePortForm.value.listType);
+	definePortForm.value.ncName = deviceFormData.value.ncName;
+	definePortDialog.value = true;
 };
 
+/**
+ * @description: 新增和修改端口接口
+ * @return {*}
+ */
+const definePortConfirm = async () => {
+	await dialogForm.value.validate((valid, fields) => {
+		if (!valid) {
+			ElMessage({
+				message: `请按要求填写完整表单！`,
+				type: "warning",
+			});
+		} else {
+			delete definePortForm.value.ncName;
+			delete definePortForm.value.portLoad;
+			ajaxCall("definePortInfo", {
+				type: "post",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				params: JSON.stringify(definePortForm.value),
+				success(data) {
+					definePortDialog.value = false;
+					ElMessage({
+						message: `操作成功！`,
+						type: "success",
+					});
+					getRtNetPortInfos();
+				},
+			});
+		}
+	});
+};
+
+/**
+ * @description: 删除端口数据
+ * @return {*}
+ */
 const delete_btn = () => {
-	console.log(1111);
+	if (!currentPort) {
+		ElMessage({
+			message: `请选择要删除的端口信息！`,
+			type: "warning",
+		});
+		return;
+	}
+	$.ajax({
+		type: "post",
+		url: `${urlPath}/v1/ccs/op/host/delRtConNetVisPortInfo?id=${currentPort.id}`,
+		data: {},
+		dataType: "json",
+		success: function (res) {
+			console.log(res);
+			if (res.code === 200) {
+				ElMessage({
+					message: `删除成功！`,
+					type: "success",
+				});
+				getRtNetPortInfos();
+			}
+		},
+	});
 };
 
 onMounted(() => {});
@@ -295,12 +562,20 @@ onMounted(() => {});
 		}
 	}
 
+	.device-box {
+		height: 400px;
+	}
+
 	.port-box {
 		position: relative;
+		height: calc(100% - 400px);
+		.el-table {
+			height: calc(100% - 80px);
+		}
 		.btn-box {
 			height: 28px;
 			position: absolute;
-			bottom: -3.8rem;
+			bottom: -0.5rem;
 			left: 0rem;
 
 			.el-button {
