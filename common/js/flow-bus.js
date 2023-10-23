@@ -22,15 +22,29 @@ getZJData()
 getEventData()
 // 获取通信协议数据
 function getTXlineData() {
-
-  setTXlineData()
+  HttpUtil.post({
+    url: '/ccs/op/traffic/getAgreementInfo',
+    params: {
+      startTime: '2023-07-01 00:00:00',
+      endTime: '2023-07-30 23:59:59'
+    },
+    onSuccess: function (res) {
+      setTXlineData(res.data)
+    }
+  })
 }
-function setTXlineData() {
-  var timedata = ['2002/1/5', '2002/1/6', '2002/1/7', '2002/1/8', '2002/1/9']
-  var namedata = ['服务总线', '消息总线', '其他']
-  var fwdata = [90, 70, 85, 65, 80]
-  var xxdata = [57, 57, 50, 37, 56]
-  var qtdata = [40, 37, 35, 15, 18]
+function setTXlineData(data) {
+  var timedata = []
+  var namedata = ['服务流量', '消息流量', '通用流量']
+  var fwdata = []
+  var xxdata = []
+  var qtdata = []
+  data.forEach(function(item){
+    timedata.push(item.time)
+    fwdata.push(item.serverVolume)
+    xxdata.push(item.messageVolume)
+    qtdata.push(item.generalVolume)
+  })
   if (!CiEchart) {
     CiEchart = echarts.init(document.getElementById('lineid'));
   }
@@ -114,8 +128,9 @@ function getTXlineEcharts(timedata, namedata, fwdata, xxdata, qtdata) {
     ],
     series: [
       {
-        name: '服务总线',
+        name: '服务流量',
         type: 'line',
+        connectNulls:true,
         emphasis: {
           focus: 'series'
         },
@@ -137,8 +152,9 @@ function getTXlineEcharts(timedata, namedata, fwdata, xxdata, qtdata) {
         },
       },
       {
-        name: '消息总线',
+        name: '消息流量',
         type: 'line',
+        connectNulls:true,
         emphasis: {
           focus: 'series'
         },
@@ -160,8 +176,9 @@ function getTXlineEcharts(timedata, namedata, fwdata, xxdata, qtdata) {
         },
       },
       {
-        name: '其他',
+        name: '通用流量',
         type: 'line',
+        connectNulls:true,
         emphasis: {
           focus: 'series'
         },
@@ -189,11 +206,21 @@ function getTXlineEcharts(timedata, namedata, fwdata, xxdata, qtdata) {
 
 // 获取在线会话数数据
 function getOnlineData() {
-  setOnlineData()
+  HttpUtil.post({
+    url: '/ccs/op/traffic/getDialogueData',
+    params: {
+      startTime: '2023-07-27 00:00:00',
+      endTime: '2023-07-27 23:59:59'
+    },
+    onSuccess: function (res) {
+      setOnlineData(res.data)
+    }
+  })
 }
-function setOnlineData() {
-  var timedata = ['11:00', '12:00', '13:00', '14:00']
-  var fwdata = [90, 70, 85, 65]
+function setOnlineData(resdata) {
+
+  var timedata = DateUtil.getEchartsXAxis(1440)
+  var fwdata = resdata
   if (!lineEchart) {
     lineEchart = echarts.init(document.getElementById('dline'));
   }
@@ -292,11 +319,21 @@ function getOnlineEcharts(timedata, fwdata) {
 
 // 获取服务总线数据
 function getFwLineData() {
-  setFwLineData()
+  HttpUtil.post({
+    url: '/ccs/op/traffic/getCommunicationInfo',
+    params: {
+      startTime: '2023-07-01 00:00:00',
+      endTime: '2023-07-30 23:59:59'
+    },
+    onSuccess: function (res) {
+      setFwLineData(res.data)
+    }
+  })
+ 
 }
-function setFwLineData() {
-  var timedata = ['sca_ctl', 'sca_check', 'down_lo', 'xxx']
-  var fwdata = [90, 70, 85, 65]
+function setFwLineData(resdata) {
+  var timedata = ['服务总线','平台流量','通用流量']
+  var fwdata = [resdata.serverBusTraffic?resdata.serverBusTraffic:0,resdata.platformTraffic?resdata.platformTraffic:0,resdata.genericTraffic?resdata.genericTraffic:0]
   if (!barEchart) {
     barEchart = echarts.init(document.getElementById('barchart'));
   }
@@ -314,7 +351,7 @@ function getFwLineEcharts(timedata, fwdata) {
       }
     },
     legend: {
-      data: ['销售'],
+      data: ['流量'],
       itemWidth: 12,
       itemHeight: 12,
       textStyle: {
@@ -381,7 +418,7 @@ function getFwLineEcharts(timedata, fwdata) {
     ],
     series: [
       {
-        name: '销售',
+        name: '流量',
         type: 'bar',
         barWidth: '25%',
         emphasis: {
@@ -407,81 +444,87 @@ function getFwLineEcharts(timedata, fwdata) {
 }
 // 消息总线-通道
 function getZxData() {
-  HttpUtil.get({
+  HttpUtil.post({
     url:'/ccs/op/traffic/getInformationLineData',
     params:{
-      startTime:'2023-07-21 00:00:00',
-      endTime:'2023-07-25 23:59:59',
+      startTime:'2023-07-27 00:00:00',
+      endTime:'2023-07-28 23:59:59',
       type:1
     },
     onSuccess:function(res){
       type=1
-      setZxData(res)
+      setZxData(res.data)
     }
   })
  
 }
-function setZxData() {
+function setZxData(resdata) {
   if (!pieEchart) {
     pieEchart = echarts.init(document.getElementById('piechart'));
   }
-  pieEchart.setOption(setEcharts(), true);
+  pieEchart.setOption(setEcharts(resdata), true);
 }
 
 // 主机流量
 function getZJData(){
-  HttpUtil.get({
+  HttpUtil.post({
     url:'/ccs/op/traffic/getInformationLineData',
     params:{
-      startTime:'2023-07-21 00:00:00',
-      endTime:'2023-07-25 23:59:59',
+      startTime:'2023-07-27 00:00:00',
+      endTime:'2023-07-28 23:59:59',
       type:2
     },
     onSuccess:function(res){
       type=2
-      setZJData(res)
+      setZJData(res.data)
     }
   })
 }
-function setZJData(){
+function setZJData(resdata){
   if (!pieEchart1) {
     pieEchart1 = echarts.init(document.getElementById('piechart1'));
   }
-  pieEchart1.setOption(setEcharts(), true);
+  pieEchart1.setOption(setEcharts(resdata), true);
 }
 
 // 消息总线-事件号
 function getEventData(){
-  HttpUtil.get({
+  HttpUtil.post({
     url:'/ccs/op/traffic/getInformationLineData',
     params:{
-      startTime:'2023-07-21 00:00:00',
-      endTime:'2023-07-25 23:59:59',
+      startTime:'2023-07-27 00:00:00',
+      endTime:'2023-07-28 23:59:59',
       type:3
     },
     onSuccess:function(res){
       type=3
-      setEventData(res)
+      setEventData(res.data)
     }
   })
 }
-function setEventData(){
+function setEventData(resdata){
   if (!pieEchart2) {
     pieEchart2 = echarts.init(document.getElementById('piechart2'));
   }
-  pieEchart2.setOption(setEcharts(), true);
+  pieEchart2.setOption(setEcharts(resdata), true);
 }
 
 
-function setEcharts() {
+function setEcharts(resdata) {
   /* 数据 */
-  let nameList = ["主机A", "主机B", "主机C", "主机D"];
-  let valueList = [290, 180, 230, 100];
+  let nameList = [];
+  let valueList = [];
   var total = 0;
-
+  if(resdata.length>5){
+    resdata.splice(5)
+  }
   /* 整合 */
-  let colorList = ["#159fd9", "#53dff1", "#20ca9c", "#c47930"];
+  let colorList = ["#159fd9", "#53dff1", "#20ca9c", "#c47930","#BEEDF7"];
   let data = [];
+  resdata.forEach(function (item) {
+    nameList.push(item.serv)
+    valueList.push(item.sessionVolume)
+  })
   nameList.map((item, index) => {
     total += valueList[index]
     data.push({
@@ -489,8 +532,9 @@ function setEcharts() {
       value: valueList[index]
     })
   })
-  var lefts = ["75%", "75%", "5%", "5%"]
-  var tops = ["30%", "60%", "60%", "30%"]
+  
+  var lefts = ["65%", "65%", "65%", "65%","65%"]
+  var tops = ["10%","25%", "40%", "55%","70%" ]
   let legendData = []
   for (let i = 0; i < data.length; i++) {
     let bfb = parseInt((data[i].value / total) * 100) + "%";

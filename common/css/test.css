@@ -1,0 +1,184 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: url(../../../common/image/topology-show/bg.png) no-repeat center center;
+    background-size: 100% 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+header {
+    width: 100%;
+    height: 126px;
+    background: url(../../../common/image/home/top.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+header span {
+    color: #fff;
+    font-size: 0.16rem;
+    position: absolute;
+    top: 60px;
+    left: calc(50% - 100px);
+}
+
+footer {
+    width: 100%;
+    height: 32px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: url(../../../common/image/home/bottom.png) no-repeat center center;
+    background-size: 100% 100%;
+}
+
+main {
+    width: 98%;
+    height: calc(100% - 158px);
+    margin: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    background: url(../image/topology-show/bg1.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: relative;
+}
+.jhbobx{
+    width: 1051px;
+    height: 161px;
+    background: url(../image/topology-show/box3.png) no-repeat center center;
+    background-size: 100% 100%;
+    margin: 60px auto;
+}
+
+.jhbobx1{
+    width: 1051px;
+    height: 161px;
+    background: url(../image/topology-show/box3.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: absolute;
+    left: calc(50% - 525.5px);
+    bottom: 80px;
+}
+.zjbox{
+    width: 401px;
+    height: 161px;
+    background: url(../image/topology-show/box2.png) no-repeat center center;
+    background-size: 100% 100%;
+    position: absolute;
+    bottom: 330px;
+}
+.zj1box{
+    left: 350px;
+    
+}
+/* .zj2box{
+    left: 650px;
+} */
+.zj3box{
+    left: 1100px;
+}
+.titlebox{
+    position: absolute;
+    width: 140px;
+    height: 200px;
+    background: url(../image/topology-show/box.png) no-repeat center center;
+    bottom: 80px;
+    right: 80px;
+}
+.titlebox li{
+    width: 100%;
+    height: 16.65%;
+    
+}
+.titlebox li .liimg{
+    width: 16px;
+    height: 16px;
+    margin-top: 5px ;
+    margin-left: 20px;
+    float: left;
+}
+.titlebox li .liimg img{
+    width: 100%;
+    height: 100%;
+}
+.lititle{
+    float: left;
+    margin-left: 10px;
+    line-height: 32px;
+    color: #c3e9fc;
+    font-size: 14px;
+}
+.liimg1{
+    width: 25px;
+    height: 15px;
+    float: left;
+    margin-top: 5px;
+    margin-left: 12px;
+}
+.jhtext{
+    width: 104px;
+    height: 23px;
+    position: absolute;
+    left: calc(50% - 52px);
+    top: 50px;
+}
+.jhtext1{
+    width: 104px;
+    height: 23px;
+    position: absolute;
+    left: calc(50% - 52px);
+    bottom: 230px;
+    z-index: 999;
+}
+.zjtext{
+    width: 77px;
+    height: 23px;
+    position: absolute;
+    z-index: 999;
+    bottom: 470px;
+}
+.zjtext1{
+    left: 520px;
+
+   
+}
+.zjtext2{
+    left: 800px;
+   
+}
+.zjtext3{
+    left: 1270px;
+   
+}
+.jhbobx,.zjbox,.jhbobx1{
+    display: flex;
+    justify-content: space-around;
+}
+.jhbobx li,.zjbox li,.jhbobx1 li{
+    width: 81px;
+    height: 100%;
+    position: relative;
+}
+.wgtext{
+    text-align: center;
+    margin-top: 50px;
+    color: #fff;
+}
+.wgimg{
+    width: 81px;
+    height: 72px;
+    margin-top: 10px;
+}
+.ztstatus{
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: calc(50% - 11px);
+    bottom: 10px;
+}
+.ztstatus img{
+    width: 100%;
+    height: 100%;
+}
