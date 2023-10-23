@@ -29,6 +29,11 @@ export function changeScreen(key, hasSideBar) {
             }
             mainContainer.getElementsByClassName('content')[0].appendChild(bodyContainer);
             mainContainer.classList.remove('hidden');
+            $(mainContainer)
+                .find('#' + key)
+                .addClass('select')
+                .siblings()
+                .removeClass('select');
         }
     }
     if (jam.current !== key) {
@@ -41,7 +46,7 @@ $(document).ready(() => {
     buildSideBar();
     const TITLE = document.getElementById('header');
     TITLE.addEventListener('click', function () {
-        location.hash='home'
+        location.hash = 'home';
     });
     // buildClock({ bottom: '0.6rem', right: '0.6rem' });
     // 设置全局监听关卡，开卡

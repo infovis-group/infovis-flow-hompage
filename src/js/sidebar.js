@@ -115,7 +115,8 @@ export function buildSideBar() {
     if (!hash) {
         location.hash = _initScreen;
     } else {
-        _initScreen = !hash;
+        _initScreen = hash;
+        _selectDom = document.getElementById(hash);
     }
     onHashChange(sidebarConf, _initScreen);
 }
