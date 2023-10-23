@@ -1,6 +1,6 @@
 (function () {
 	// 环境配置: dev、test、prod
-	var active = 'dev';
+	var active = 'prod';
 
 	var prodAppName = ''
 
@@ -10,13 +10,17 @@
 		apiD: _getApiPrefixD(),
 		isDebug: false,
 	};
-
+	window.idlist=['465278136502714369','465278136502714370','465278136502714371','465278136502714372']
 	function _getApiPrefix() {
 		if (active === 'dev') {
 			// return 'http://192.168.201.137:18090';
 			// return 'http://192.168.201.201:18090';
-			return 'http://192.168.201.104:18090';
-
+			// 王哥
+			// return 'http://192.168.201.74:18090';
+			// 袁
+			// return 'http://192.168.201.18:18090';
+			// 陈豪
+			return 'http://192.168.201.58:18090';
 		} else if (active === 'test') {
 			return window.location.protocol + '//' + window.location.host;
 		} else if (active === 'prod') {
@@ -477,7 +481,7 @@
 				timeArray.push(date.format('hh:mm'));
 				date.setMinutes(date.getMinutes() + minutesAdd);
 			};
-			timeArray.push('24:00');
+			// timeArray.push('24:00');
 			return timeArray;
 		},
 
